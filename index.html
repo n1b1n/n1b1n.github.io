@@ -1,9 +1,139 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>NibinSec</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nibin George | Security Researcher</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #05070a;
+            --card-bg: #0d1117;
+            --accent: #ff3e3e; /* The signature red you liked */
+            --text-main: #ffffff;
+            --text-dim: #8b949e;
+            --border: #30363d;
+        }
+
+        * { box-sizing: border-box; }
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 10%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background: rgba(5, 7, 10, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo { font-size: 20px; font-weight: 800; letter-spacing: 2px; }
+        .logo span { color: var(--accent); }
+        nav a { color: var(--text-dim); text-decoration: none; margin-left: 30px; font-size: 13px; font-weight: 600; text-transform: uppercase; transition: 0.3s; }
+        nav a:hover { color: var(--accent); }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 10%;
+            background: radial-gradient(circle at 80% 20%, #161b22 0%, #05070a 100%);
+        }
+
+        .tagline { color: var(--accent); font-weight: 700; letter-spacing: 5px; font-size: 12px; text-transform: uppercase; margin-bottom: 15px; }
+        h1 { font-size: clamp(45px, 10vw, 85px); margin: 0; font-weight: 800; letter-spacing: -2px; }
+        .hero p { font-size: 20px; color: var(--text-dim); max-width: 600px; margin: 25px 0 40px; }
+
+        /* Buttons */
+        .btn-group { display: flex; gap: 20px; }
+        .btn { padding: 15px 35px; border-radius: 4px; text-decoration: none; font-weight: 700; transition: 0.3s; font-size: 14px; }
+        .btn-primary { background: var(--accent); color: white; }
+        .btn-secondary { border: 1px solid var(--border); color: var(--text-main); }
+        .btn:hover { transform: translateY(-3px); opacity: 0.9; box-shadow: 0 10px 20px rgba(255, 62, 62, 0.2); }
+
+        /* Sections */
+        section { padding: 100px 10%; }
+        h2 { font-size: 32px; margin-bottom: 50px; border-left: 4px solid var(--accent); padding-left: 15px; }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .card {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: 0.3s;
+        }
+        .card:hover { border-color: var(--accent); background: #12161d; }
+        .card h3 { color: var(--accent); margin-top: 0; font-size: 22px; }
+        .card p { color: var(--text-dim); font-size: 15px; }
+
+        footer { text-align: center; padding: 50px; border-top: 1px solid var(--border); color: var(--text-dim); font-size: 12px; }
+
+        @media (max-width: 768px) {
+            nav { display: none; }
+            h1 { font-size: 50px; }
+        }
+    </style>
 </head>
 <body>
-  <h1>GitHub Pages Working 🚀</h1>
+
+    <header>
+        <div class="logo">NIBIN<span>.SEC</span></div>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#hall-of-fame">Hall of Fame</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="tagline">PENTESTER // BUG BOUNTY HUNTER</div>
+        <h1>Nibin George</h1>
+        <p>Independent Security Researcher focusing on Web Application Security and JavaScript Vulnerability Research.</p>
+        <div class="btn-group">
+            <a href="mailto:nibin@nibinsec.online" class="btn btn-primary">HIRE ME</a>
+            <a href="#hall-of-fame" class="btn btn-secondary">VIEW EXPLOITS</a>
+        </div>
+    </section>
+
+    <section id="hall-of-fame">
+        <h2>Hall of Fame</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Oracle</h3>
+                <p>Identified an <b>Unauthenticated PII Disclosure</b> via Exposed DLKey (Case S2370531). Credited in upcoming CPU Advisory.</p>
+            </div>
+            <div class="card">
+                <h3>The Arsenal</h3>
+                <p>Developer of <b>scar</b>, a JavaScript static analysis tool designed for identifying hidden API keys and endpoints during reconnaissance.</p>
+            </div>
+            <div class="card">
+                <h3>Certifications</h3>
+                <p>Certified Ethical Hacker (CEH) with a deep understanding of offensive security methodologies and network defense.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <p>&copy; 2026 NIBIN GEORGE. ALL RIGHTS RESERVED.</p>
+        <p>Securing the web, one bug at a time.</p>
+    </footer>
+
 </body>
 </html>
