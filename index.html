@@ -3,164 +3,204 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nibin George | Security Researcher</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <title>Nibin George | Security Research Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Plus+Jakarta+Sans:wght@300;400;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #030408;
-            --accent-red: #ff3e3e;
-            --accent-blue: #4d5ae5;
-            --glass: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.08);
+            --bg: #020306;
+            --accent-red: #ff3c3c;
+            --accent-blue: #3d5afe;
             --text-main: #ffffff;
-            --text-dim: #94a3b8;
+            --text-dim: #8892b0;
+            --glass: rgba(255, 255, 255, 0.02);
+            --glass-border: rgba(255, 255, 255, 0.08);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             background-color: var(--bg);
             color: var(--text-main);
             font-family: 'Plus Jakarta Sans', sans-serif;
             overflow-x: hidden;
-            /* Deep cyber-glow background */
-            background: radial-gradient(circle at 50% -20%, #1a1010 0%, #030408 100%);
+            /* Cyber-lighting background */
+            background: 
+                radial-gradient(circle at 80% 20%, rgba(255, 60, 60, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 20% 80%, rgba(61, 90, 254, 0.05) 0%, transparent 40%),
+                var(--bg);
         }
 
-        /* Background Grid Mesh */
-        .mesh {
+        /* Animated Mesh Grid */
+        body::before {
+            content: "";
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-image: linear-gradient(var(--glass-border) 1px, transparent 1px), 
-                              linear-gradient(90deg, var(--glass-border) 1px, transparent 1px);
-            background-size: 60px 60px;
+            background-image: linear-gradient(var(--glass-border) 1px, transparent 1px), linear-gradient(90deg, var(--glass-border) 1px, transparent 1px);
+            background-size: 80px 80px;
             z-index: -1;
-            opacity: 0.1;
+            opacity: 0.2;
+            pointer-events: none;
         }
 
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 25px 10%;
-            backdrop-filter: blur(15px);
+            padding: 25px 8%;
             position: fixed;
             width: 100%;
             top: 0;
+            background: rgba(2, 3, 6, 0.8);
+            backdrop-filter: blur(20px);
             z-index: 1000;
             border-bottom: 1px solid var(--glass-border);
         }
 
-        .logo { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; }
-        .logo span { color: var(--accent-red); text-shadow: 0 0 15px var(--accent-red); }
+        .logo { font-family: 'Syncopate', sans-serif; font-size: 18px; letter-spacing: 2px; }
+        .logo span { color: var(--accent-red); }
+
+        nav a {
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+        nav a:hover { color: var(--accent-red); }
 
         .hero {
             height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 10%;
+            padding: 0 8%;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
-        /* The Custom Motto Section */
         .motto {
             font-family: 'JetBrains Mono', monospace;
             color: var(--accent-red);
             font-size: 14px;
-            letter-spacing: 5px;
-            font-weight: 700;
-            text-transform: uppercase;
+            letter-spacing: 6px;
             margin-bottom: 30px;
-            text-shadow: 0 0 12px rgba(255, 62, 62, 0.6);
-            animation: heartbeat 2s infinite ease-in-out;
+            text-transform: uppercase;
+            font-weight: 500;
+            text-shadow: 0 0 15px rgba(255, 60, 60, 0.4);
         }
-        .motto span { color: var(--accent-blue); text-shadow: 0 0 12px rgba(77, 90, 229, 0.6); margin: 0 10px; }
+        .motto span { color: #555; margin: 0 15px; }
 
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(0.97); opacity: 0.8; }
+        /* Large Name Styling */
+        h1 {
+            font-family: 'Syncopate', sans-serif;
+            font-size: clamp(60px, 12vw, 150px);
+            font-weight: 700;
+            line-height: 0.85;
+            margin-bottom: 30px;
+            letter-spacing: -5px;
+            color: var(--text-main);
+            text-transform: uppercase;
         }
 
-        h1 { font-size: clamp(3.5rem, 12vw, 7rem); font-weight: 800; line-height: 0.9; letter-spacing: -4px; margin-bottom: 20px; }
-        
-        .hero p { font-size: 1.2rem; color: var(--text-dim); max-width: 750px; margin-bottom: 45px; }
+        .role {
+            font-size: clamp(20px, 4vw, 32px);
+            color: var(--text-dim);
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .description {
+            max-width: 650px;
+            color: var(--text-dim);
+            line-height: 1.8;
+            font-size: 18px;
+            margin-bottom: 50px;
+        }
 
         .btn-group { display: flex; gap: 20px; }
+
         .btn {
-            padding: 16px 35px;
-            border-radius: 8px;
+            padding: 18px 45px;
+            border-radius: 4px;
             text-decoration: none;
-            font-weight: 700;
+            font-weight: 800;
             font-size: 14px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            transition: 0.4s;
+            position: relative;
         }
-        .btn-red { background: var(--accent-red); color: white; box-shadow: 0 0 25px rgba(255, 62, 62, 0.3); }
-        .btn-red:hover { transform: translateY(-5px); box-shadow: 0 0 45px rgba(255, 62, 62, 0.5); }
-        .btn-outline { border: 1px solid var(--glass-border); color: var(--text-main); }
-        .btn-outline:hover { background: var(--glass); border-color: var(--text-dim); }
 
-        /* Content Grid */
-        .section-title { font-size: 2.5rem; text-align: center; margin: 100px 0 50px; font-weight: 800; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; padding: 0 10% 100px; }
-        
+        .btn-primary {
+            background: var(--accent-red);
+            color: white;
+            box-shadow: 0 10px 30px rgba(255, 60, 60, 0.3);
+        }
+        .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(255, 60, 60, 0.5); }
+
+        .btn-secondary {
+            border: 1px solid var(--glass-border);
+            color: white;
+            background: var(--glass);
+        }
+        .btn-secondary:hover { border-color: var(--accent-red); background: rgba(255, 60, 60, 0.05); }
+
+        /* Achievements Glass Blocks */
+        .impact-section { padding: 100px 8%; }
+        .impact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
         .glass-card {
             background: var(--glass);
-            backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
-            padding: 45px;
-            border-radius: 24px;
+            padding: 50px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            transition: 0.4s;
         }
-        .glass-card:hover { border-color: var(--accent-red); background: rgba(255, 255, 255, 0.05); transform: translateY(-10px); }
-        .glass-card h3 { color: var(--accent-red); font-family: 'JetBrains Mono', monospace; margin-bottom: 15px; font-size: 22px; }
-        .glass-card p { color: var(--text-dim); line-height: 1.7; font-size: 16px; }
+        .glass-card:hover { border-color: var(--accent-red); transform: scale(1.02); }
+        .glass-card h3 { font-family: 'Syncopate', sans-serif; font-size: 20px; color: var(--accent-red); margin-bottom: 20px; }
+        .glass-card p { color: var(--text-dim); line-height: 1.7; }
 
-        footer { text-align: center; padding: 60px; border-top: 1px solid var(--glass-border); color: var(--text-dim); font-family: 'JetBrains Mono'; font-size: 12px; letter-spacing: 2px; }
-
-        @media (max-width: 768px) { h1 { font-size: 3.5rem; } .grid { padding: 0 5%; } }
     </style>
 </head>
 <body>
 
-    <div class="mesh"></div>
-
     <header>
-        <div class="logo">NIBIN<span>.GEORGE</span></div>
+        <div class="logo">NIBIN<span>.SEC</span></div>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#impact">Research</a>
+            <a href="mailto:contact@nibinsec.online">Connect</a>
+        </nav>
     </header>
 
-    <section class="hero">
+    <section class="hero" id="home">
         <div class="motto">EXPLOITING THE MIND <span>//</span> PATCHED BY THE HEART</div>
-        <h1>Security Researcher.</h1>
-        <p>I specialize in identifying critical vulnerabilities and helping organizations secure their infrastructure through responsible disclosure and advanced exploitation research.</p>
+        <h1>Nibin<br>George</h1>
+        <div class="role">Security Researcher & Vulnerability Hunter</div>
+        <p class="description">
+            Specializing in high-impact vulnerability research and offensive security. 
+            Transforming complex security flaws into hardened infrastructure.
+        </p>
         <div class="btn-group">
-            <a href="mailto:contact@nibinsec.online" class="btn btn-red">Establish Connection</a>
-            <a href="#impact" class="btn btn-outline">View Research</a>
+            <a href="mailto:contact@nibinsec.online" class="btn btn-primary">Establish Connection</a>
+            <a href="#impact" class="btn btn-secondary">Research Portal</a>
         </div>
     </section>
 
-    <h2 class="section-title" id="impact">Verified Impact</h2>
-    <div class="grid">
-        <div class="glass-card">
-            <h3>Oracle Hall of Fame</h3>
-            <p>Identified a Critical Unauthenticated PII Disclosure vulnerability via exposed DLKeys (Case S2370531). Credited in official Oracle security advisories.</p>
+    <section class="impact-section" id="impact">
+        <div class="impact-grid">
+            <div class="glass-card">
+                <h3>ORACLE HOF</h3>
+                <p>Recognized for identifying <strong>Critical Unauthenticated PII Disclosure</strong> vulnerabilities (Case S2370531) in official security advisories.</p>
+            </div>
+            <div class="glass-card">
+                <h3>SCAR TOOL</h3>
+                <p>Architect of <strong>scar</strong>, a custom JavaScript analyzer engineered for automated vulnerability surface mapping and endpoint discovery.</p>
+            </div>
         </div>
-
-        <div class="glass-card">
-            <h3>Project: Scar</h3>
-            <p>Developing 'scar', a high-performance reconnaissance tool designed for automated vulnerability surface mapping and endpoint discovery during reconnaissance.</p>
-        </div>
-
-        <div class="glass-card">
-            <h3>Security Arsenal</h3>
-            <p>Vulnerability Research focusing on Broken Access Control, Sensitive Data Exposure, and API security. CEH Certified researcher.</p>
-        </div>
-    </div>
-
-    <footer>
-        &copy; 2026 NIBINSEC // ALL SYSTEMS OPERATIONAL
-    </footer>
+    </section>
 
 </body>
 </html>
