@@ -46,14 +46,22 @@
 
         /* --- Tactical Header --- */
         .about-header { text-align: center; padding: 5rem 0; border-bottom: 1px solid var(--border); }
+        
+        /* UPDATED AVATAR STYLE FOR 'HI' IMAGE */
         .profile-avatar {
-            width: 160px; height: 160px;
-            border-radius: 50%;
+            width: 220px; /* Increased size to see details */
+            height: 220px;
+            border-radius: 25px; /* Rounded square instead of circle */
             border: 4px solid var(--accent-red);
-            box-shadow: 0 0 30px rgba(255, 62, 62, 0.3);
+            box-shadow: 0 0 40px rgba(255, 62, 62, 0.2); /* Soft red glow */
             margin-bottom: 1.5rem;
             object-fit: cover;
+            transition: transform 0.3s ease;
         }
+        .profile-avatar:hover {
+            transform: scale(1.05) rotate(2deg); /* Slight pop effect on hover */
+        }
+
         .about-header h1 { font-size: 3rem; font-weight: 800; margin-bottom: 0.5rem; letter-spacing: -1px; }
         .hero-subtitle { font-family: var(--font-mono); color: var(--accent-blue); font-size: 14px; letter-spacing: 4px; text-transform: uppercase; font-weight: 700; }
         .hero-subtitle span { color: var(--accent-red); }
@@ -121,7 +129,8 @@
 
         <main id="home">
             <header class="about-header">
-                <img src="https://avatars.githubusercontent.com/u/189504231?v=4" alt="Operator Avatar" class="profile-avatar">
+                <img src="avatar.png" alt="Nibin Sec Welcome" class="profile-avatar">
+                
                 <p class="hero-subtitle">EXPLOITING THE MIND <span>//</span> PATCHED BY THE HEART</p>
                 <h1>Nibin George</h1>
                 <p style="color: var(--text-dim); font-size: 1.2rem; margin-top: 10px;">Security Researcher & Offensive Practitioner</p>
@@ -132,11 +141,11 @@
                 <div class="matrix-grid">
                     <div class="trait-card">
                         <blockquote class="trait-card-quote">"From Economics to Exploitation: Deciphering the logic of markets and machines."</blockquote>
-                        <p class="trait-card-tags">🎓 B.A. Economics / Advanced Diploma in Cyber Defence / CEH v13 Certified / Cybersecurity Analyst</p>
+                        <p class="trait-card-tags">🎓 B.A. Economics / Advanced Diploma in Cyber Defence / CEH v13 Certified</p>
                     </div>
                     <div class="trait-card">
                         <blockquote class="trait-card-quote">"Oracle Hall of Fame: Proving that persistent research yields critical results."</blockquote>
-                        <p class="trait-card-tags">🏆 Independent Researcher / Vulnerability Hunter / PII Disclosure Specialist / Passionate Whitehat</p>
+                        <p class="trait-card-tags">🏆 Independent Researcher / Vulnerability Hunter / PII Disclosure Specialist</p>
                     </div>
                     <div class="trait-card">
                         <blockquote class="trait-card-quote">"TryHackMe Operations: Constant training in the digital proving grounds."</blockquote>
