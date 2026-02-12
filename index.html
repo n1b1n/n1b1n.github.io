@@ -3,46 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Operator Profile | NIBIN.SEC</title>
+    <title>Nibin George | Tactical Operator Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg: #0a0d17;
             --surface: #111420;
-            --accent: #ff3e3e;
-            --text: #ffffff;
+            --accent-red: #ff3e3e;
+            --accent-blue: #4d5ae5;
+            --text-main: #ffffff;
             --text-dim: #94a3b8;
             --border: rgba(255, 255, 255, 0.08);
             --font-mono: 'JetBrains Mono', monospace;
         }
 
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        
         body {
             background-color: var(--bg);
-            color: var(--text);
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            margin: 0;
-            line-height: 1.6;
             background: radial-gradient(circle at 50% 50%, #161a2e 0%, #0a0d17 100%);
             background-attachment: fixed;
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            line-height: 1.6;
         }
 
         .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
 
-        /* Tactical Header */
+        /* --- Navigation --- */
+        header.nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .logo { font-size: 22px; font-weight: 900; letter-spacing: 1px; text-decoration: none; color: white; }
+        .logo span { color: var(--accent-red); }
+        nav a { color: var(--text-dim); text-decoration: none; margin-left: 30px; font-size: 14px; font-weight: 600; text-transform: uppercase; transition: 0.3s; }
+        nav a:hover { color: var(--accent-red); }
+
+        /* --- Tactical Header --- */
         .about-header { text-align: center; padding: 5rem 0; border-bottom: 1px solid var(--border); }
         .profile-avatar {
             width: 160px; height: 160px;
             border-radius: 50%;
-            border: 4px solid var(--accent);
+            border: 4px solid var(--accent-red);
             box-shadow: 0 0 30px rgba(255, 62, 62, 0.3);
             margin-bottom: 1.5rem;
             object-fit: cover;
         }
-        .about-header h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; letter-spacing: -1px; }
-        .about-header p { font-family: var(--font-mono); color: var(--accent); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; }
+        .about-header h1 { font-size: 3rem; font-weight: 800; margin-bottom: 0.5rem; letter-spacing: -1px; }
+        .hero-subtitle { font-family: var(--font-mono); color: var(--accent-blue); font-size: 14px; letter-spacing: 4px; text-transform: uppercase; font-weight: 700; }
+        .hero-subtitle span { color: var(--accent-red); }
 
-        /* Personality Matrix Grid */
-        .section-title { font-size: 1.5rem; font-weight: 800; margin: 4rem 0 2rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-dim); border-left: 4px solid var(--accent); padding-left: 15px; }
+        /* --- Operational Matrix (Trait Cards) --- */
+        .section-title { font-size: 1.5rem; font-weight: 800; margin: 4rem 0 2rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-dim); border-left: 4px solid var(--accent-red); padding-left: 15px; }
         .matrix-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
         
         .trait-card {
@@ -51,95 +68,134 @@
             padding: 2.5rem;
             border-radius: 12px;
             transition: 0.3s;
-            position: relative;
-            overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
-        .trait-card:hover { border-color: var(--accent); transform: translateY(-5px); background: rgba(255, 255, 255, 0.02); }
-        .trait-card-quote {
-            font-size: 1.1rem; font-weight: 700;
-            border-left: 3px solid var(--accent);
-            padding-left: 1rem; margin: 0 0 1.5rem;
-            color: var(--text);
-        }
-        .trait-card-tags { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-dim); line-height: 1.8; }
+        .trait-card:hover { border-color: var(--accent-red); transform: translateY(-5px); background: rgba(255, 255, 255, 0.02); }
+        .trait-card-quote { font-size: 1.1rem; font-weight: 700; border-left: 3px solid var(--accent-red); padding-left: 1rem; margin: 0 0 1.5rem; }
+        .trait-card-tags { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-dim); line-height: 1.8; flex-grow: 1; }
 
-        /* Stats Grid */
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; text-align: center; margin-top: 3rem; }
-        .stat-item .count { font-size: 3.5rem; font-weight: 800; color: var(--accent); font-family: var(--font-mono); }
+        /* --- Live Tactical Datalink (Stats) --- */
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; text-align: center; margin-bottom: 4rem; }
+        .stat-item .count { font-size: 3.5rem; font-weight: 800; color: var(--accent-red); font-family: var(--font-mono); }
         .stat-item .label { font-size: 0.9rem; color: var(--text-dim); text-transform: uppercase; }
 
-        /* Button Group */
-        .btn-group { display: flex; justify-content: center; gap: 20px; margin-top: 2rem; }
-        .btn { 
-            padding: 12px 30px; 
-            border-radius: 5px; 
-            text-decoration: none; 
-            font-family: var(--font-mono); 
-            font-size: 13px; 
-            font-weight: 700; 
-            text-transform: uppercase;
+        /* --- Technical Arsenal (Repo-style Grid) --- */
+        .repo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+        .repo-card {
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
             transition: 0.3s;
+            text-decoration: none;
+            color: inherit;
         }
-        .btn-primary { background: var(--accent); color: white; box-shadow: 0 0 20px rgba(255, 62, 62, 0.4); }
-        .btn-primary:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(255, 62, 62, 0.6); }
+        .repo-card:hover { border-color: var(--accent-blue); box-shadow: 0 8px 16px rgba(0,0,0,0.5); transform: translateY(-3px); }
+        .repo-icon { font-size: 1.5rem; margin-bottom: 1rem; color: var(--accent-blue); }
+        .repo-title { font-size: 1.25rem; font-weight: 700; color: var(--accent-blue); margin-bottom: 0.75rem; }
+        .repo-desc { font-size: 0.95rem; color: var(--text-dim); margin-bottom: 1.5rem; flex-grow: 1; }
+        .repo-footer { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-dim); display: flex; justify-content: space-between; }
+        .tag-pill { background: rgba(77, 90, 229, 0.1); color: var(--accent-blue); padding: 2px 10px; border-radius: 100px; font-size: 11px; font-weight: 700; }
 
-        footer { text-align: center; padding: 4rem 0; color: var(--text-dim); font-family: var(--font-mono); font-size: 0.8rem; border-top: 1px solid var(--border); margin-top: 4rem; }
+        /* --- Footer --- */
+        footer { text-align: center; padding: 4rem 0; color: var(--text-dim); font-family: var(--font-mono); font-size: 0.8rem; border-top: 1px solid var(--border); }
+        .contact-btn { display: inline-block; background: var(--accent-red); color: white; padding: 12px 30px; border-radius: 5px; text-decoration: none; font-weight: 700; margin-top: 1rem; transition: 0.3s; }
+        .contact-btn:hover { box-shadow: 0 0 20px rgba(255, 62, 62, 0.5); transform: scale(1.05); }
     </style>
 </head>
 <body>
 
-    <main class="container">
-        <header class="about-header">
-            <img src="https://avatars.githubusercontent.com/u/189504231?v=4" alt="Operator Avatar" class="profile-avatar">
-            <h1>Nibin George</h1>
-            <p>Exploiting the Mind // Patched by the Heart</p>
-            <div class="btn-group">
-                <a href="mailto:nibinkalladayil@gmail.com" class="btn btn-primary">Establish Connection</a>
-                <a href="https://tryhackme.com/p/n1b1n" target="_blank" class="btn" style="border: 1px solid var(--border); color: #fff;">TryHackMe Profile</a>
-            </div>
+    <div class="container">
+        <header class="nav-header">
+            <a href="#" class="logo">NIBIN<span>.SEC</span></a>
+            <nav>
+                <a href="#home">Briefing</a>
+                <a href="#matrix">Matrix</a>
+                <a href="#arsenal">Arsenal</a>
+                <a href="mailto:nibinkalladayil@gmail.com">Contact</a>
+            </nav>
         </header>
 
-        <section>
-            <h2 class="section-title">Operational Matrix</h2>
-            <div class="matrix-grid">
-                <div class="trait-card">
-                    <blockquote class="trait-card-quote">"From Economics to Exploitation: Deciphering the logic of both markets and machines."</blockquote>
-                    <p class="trait-card-tags">🎓 Graduate in Economics / Advanced Diploma in Cyber Defence / CEH v13 Certified</p>
-                </div>
-                <div class="trait-card">
-                    <blockquote class="trait-card-quote">"Oracle Hall of Fame: Proving that persistent research yields critical results."</blockquote>
-                    <p class="trait-card-tags">🏆 Independent Security Researcher / Vulnerability Hunter / Passionate in Offensive Security</p>
-                </div>
-                <div class="trait-card">
-                    <blockquote class="trait-card-quote">"TryHackMe Lab Operations: Constant training in the digital proving grounds."</blockquote>
-                    <p class="trait-card-tags">🕹️ Username: n1b1n / Daily CTF Player / Deep-Research Multi-threaded Operations</p>
-                </div>
-            </div>
-        </section>
+        <main id="home">
+            <header class="about-header">
+                <img src="https://avatars.githubusercontent.com/u/189504231?v=4" alt="Operator Avatar" class="profile-avatar">
+                <p class="hero-subtitle">EXPLOITING THE MIND <span>//</span> PATCHED BY THE HEART</p>
+                <h1>Nibin George</h1>
+                <p style="color: var(--text-dim); font-size: 1.2rem; margin-top: 10px;">Security Researcher & Offensive Practitioner</p>
+            </header>
 
-        <section style="margin-top: 5rem; border-top: 1px solid var(--border); padding-top: 3rem;">
-            <h2 class="section-title">Live Tactical Datalink</h2>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="count">1</div>
-                    <div class="label">Oracle Hall of Fame</div>
+            <section id="matrix">
+                <h2 class="section-title">Operational Matrix</h2>
+                <div class="matrix-grid">
+                    <div class="trait-card">
+                        <blockquote class="trait-card-quote">"From Economics to Exploitation: Deciphering the logic of markets and machines."</blockquote>
+                        <p class="trait-card-tags">🎓 B.A. Economics / Advanced Diploma in Cyber Defence / CEH v13 Certified / Cybersecurity Analyst</p>
+                    </div>
+                    <div class="trait-card">
+                        <blockquote class="trait-card-quote">"Oracle Hall of Fame: Proving that persistent research yields critical results."</blockquote>
+                        <p class="trait-card-tags">🏆 Independent Researcher / Vulnerability Hunter / PII Disclosure Specialist / Passionate Whitehat</p>
+                    </div>
+                    <div class="trait-card">
+                        <blockquote class="trait-card-quote">"TryHackMe Operations: Constant training in the digital proving grounds."</blockquote>
+                        <p class="trait-card-tags">🕹️ Handle: n1b1n / Daily CTF Operations / Offensive Mindset / Continuous Lab Simulation</p>
+                    </div>
                 </div>
-                <div class="stat-item">
-                    <div class="count">v13</div>
-                    <div class="label">CEH Certification</div>
-                </div>
-                <div class="stat-item">
-                    <div class="count">ADCD</div>
-                    <div class="label">Cyber Defence Diploma</div>
-                </div>
-            </div>
-        </section>
-    </main>
+            </section>
 
-    <footer>
-        © 2026 NIBIN.SEC — ALL SYSTEMS OPERATIONAL<br>
-        <span style="opacity: 0.5;">nibinkalladayil@gmail.com</span>
-    </footer>
+            <section style="margin-top: 5rem; border-top: 1px solid var(--border); padding-top: 3rem;">
+                <h2 class="section-title">Tactical Datalink</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="count">1</div>
+                        <div class="label">Oracle Hall of Fame</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="count">v13</div>
+                        <div class="label">CEH Certification</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="count">ADCD</div>
+                        <div class="label">Cyber Defence Diploma</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="arsenal">
+                <h2 class="section-title">Technical Arsenal</h2>
+                <div class="repo-grid">
+                    <div class="repo-card">
+                        <div class="repo-icon"><i class="fa-solid fa-bug"></i></div>
+                        <h4 class="repo-title">Offensive Security</h4>
+                        <p class="repo-desc">Web Application Testing, API Security, OWASP Top 10, and Business Logic Exploitation.</p>
+                        <div class="repo-footer"><span class="tag-pill">Red Team</span><span>Verified</span></div>
+                    </div>
+                    <div class="repo-card">
+                        <div class="repo-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                        <h4 class="repo-title">Defensive Shield</h4>
+                        <p class="repo-desc">SOC Monitoring, SIEM (Splunk/Wazuh), Incident Response, and Threat Hunting.</p>
+                        <div class="repo-footer"><span class="tag-pill">Blue Team</span><span>Ready</span></div>
+                    </div>
+                    <div class="repo-card">
+                        <div class="repo-icon"><i class="fa-solid fa-terminal"></i></div>
+                        <h4 class="repo-title">Lab Infrastructure</h4>
+                        <p class="repo-desc">Kali Linux, Burp Suite, Metasploit, Python/Bash automation, and AWS Cloud Security.</p>
+                        <div class="repo-footer"><span class="tag-pill">Tools</span><span>Active</span></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Establish Connection via Uplink</p>
+            <a href="mailto:nibinkalladayil@gmail.com" class="contact-btn">nibinkalladayil@gmail.com</a>
+            <div style="margin-top: 30px; opacity: 0.5;">
+                © 2026 NIBIN.SEC — DEFENSIVE MINDSET // OFFENSIVE SKILLS
+            </div>
+        </footer>
+    </div>
 
 </body>
 </html>
