@@ -13,12 +13,15 @@
             --surface: #111420;
             --red: #ff3e3e;
             --blue: #4d5ae5;
-            --text-main: #ffffff;
-            --text-dim: #94a3b8;
-            --border: rgba(255, 255, 255, 0.08);
+            
+            /* UPDATED: BRIGHTER TEXT COLORS FOR BETTER READABILITY */
+            --text-main: #ffffff;       /* Pure White for main titles */
+            --text-dim: #e2e8f0;        /* Much brighter gray for body text */
+            
+            --border: rgba(255, 255, 255, 0.15); /* Slightly brighter border */
             
             /* Dynamic Variables (These change on hover) */
-            --active-color: #ffffff; /* Default text color */
+            --active-color: #ffffff;
             --glow-color: rgba(255, 255, 255, 0.05);
         }
 
@@ -35,19 +38,19 @@
 
         /* --- RED TEAM MODE (Activated by JS) --- */
         body.mode-red {
-            --glow-color: rgba(255, 62, 62, 0.25); /* Strong Red Glow */
+            --glow-color: rgba(255, 62, 62, 0.25);
             --active-color: var(--red);
         }
-        body.mode-red .defensive-text { opacity: 0.3; filter: blur(2px); } /* Fade out defensive text */
-        body.mode-red .trait-card, body.mode-red .repo-card { border-color: rgba(255, 62, 62, 0.3); }
+        body.mode-red .defensive-text { opacity: 0.5; filter: blur(1px); } /* Less aggressive blur for readability */
+        body.mode-red .trait-card, body.mode-red .repo-card { border-color: rgba(255, 62, 62, 0.5); }
 
         /* --- BLUE TEAM MODE (Activated by JS) --- */
         body.mode-blue {
-            --glow-color: rgba(77, 90, 229, 0.25); /* Strong Blue Glow */
+            --glow-color: rgba(77, 90, 229, 0.25);
             --active-color: var(--blue);
         }
-        body.mode-blue .offensive-text { opacity: 0.3; filter: blur(2px); } /* Fade out offensive text */
-        body.mode-blue .trait-card, body.mode-blue .repo-card { border-color: rgba(77, 90, 229, 0.3); }
+        body.mode-blue .offensive-text { opacity: 0.5; filter: blur(1px); }
+        body.mode-blue .trait-card, body.mode-blue .repo-card { border-color: rgba(77, 90, 229, 0.5); }
 
         .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
 
@@ -59,7 +62,7 @@
             padding: 25px 0;
             border-bottom: 1px solid var(--border);
         }
-        .logo { font-size: 22px; font-weight: 900; letter-spacing: 1px; text-decoration: none; color: white; }
+        .logo { font-size: 22px; font-weight: 900; letter-spacing: 1px; text-decoration: none; color: var(--text-main); }
         .logo span { color: var(--red); }
         nav a { color: var(--text-dim); text-decoration: none; margin-left: 30px; font-size: 14px; font-weight: 600; text-transform: uppercase; }
         nav a:hover { color: var(--text-main); }
@@ -88,32 +91,24 @@
             cursor: default;
         }
         
-        /* The Red Part */
         .offensive-text { 
             color: var(--red); 
-            cursor: crosshair; /* Changes cursor to crosshair for targeting */
+            cursor: crosshair;
             padding: 5px 10px;
             border-radius: 4px;
         }
-        .offensive-text:hover {
-            background: rgba(255, 62, 62, 0.1);
-            text-shadow: 0 0 15px var(--red);
-        }
+        .offensive-text:hover { background: rgba(255, 62, 62, 0.1); text-shadow: 0 0 15px var(--red); }
 
-        /* The Blue Part */
         .defensive-text { 
             color: var(--blue); 
             cursor: alias; 
             padding: 5px 10px;
             border-radius: 4px;
         }
-        .defensive-text:hover {
-            background: rgba(77, 90, 229, 0.1);
-            text-shadow: 0 0 15px var(--blue);
-        }
+        .defensive-text:hover { background: rgba(77, 90, 229, 0.1); text-shadow: 0 0 15px var(--blue); }
 
         /* --- Layout Grids --- */
-        .section-title { font-size: 1.5rem; font-weight: 800; margin: 4rem 0 2rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-dim); border-left: 4px solid var(--active-color); padding-left: 15px; }
+        .section-title { font-size: 1.5rem; font-weight: 800; margin: 4rem 0 2rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-main); border-left: 4px solid var(--active-color); padding-left: 15px; }
         .matrix-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
         .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; text-align: center; margin-bottom: 4rem; }
         .repo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
@@ -127,17 +122,17 @@
             display: flex;
             flex-direction: column;
         }
-        .trait-card:hover, .repo-card:hover { transform: translateY(-5px); background: rgba(255, 255, 255, 0.02); }
+        .trait-card:hover, .repo-card:hover { transform: translateY(-5px); background: rgba(255, 255, 255, 0.05); border-color: var(--active-color); }
         
-        .trait-card-quote { font-size: 1.1rem; font-weight: 700; border-left: 3px solid var(--active-color); padding-left: 1rem; margin: 0 0 1.5rem; }
-        .trait-card-tags { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--text-dim); line-height: 1.8; }
+        .trait-card-quote { font-size: 1.1rem; font-weight: 700; border-left: 3px solid var(--active-color); padding-left: 1rem; margin: 0 0 1.5rem; color: var(--text-main); }
+        .trait-card-tags { font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; color: var(--text-dim); line-height: 1.8; font-weight: 500; }
 
         .stat-item .count { font-size: 3.5rem; font-weight: 800; color: var(--active-color); font-family: 'JetBrains Mono', monospace; }
-        .stat-item .label { font-size: 0.9rem; color: var(--text-dim); text-transform: uppercase; }
+        .stat-item .label { font-size: 1rem; color: var(--text-dim); text-transform: uppercase; font-weight: 600; letter-spacing: 1px; }
 
         .repo-icon { font-size: 1.5rem; margin-bottom: 1rem; color: var(--active-color); }
         .repo-title { font-size: 1.25rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.75rem; }
-        .repo-desc { font-size: 0.95rem; color: var(--text-dim); margin-bottom: 1.5rem; flex-grow: 1; }
+        .repo-desc { font-size: 1rem; color: var(--text-dim); margin-bottom: 1.5rem; flex-grow: 1; }
         .repo-footer { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--text-dim); display: flex; justify-content: space-between; }
 
         /* Footer */
@@ -165,7 +160,7 @@
                 
                 <p class="hero-subtitle">
                     <span class="offensive-text" onmouseover="setMode('red')" onmouseout="setMode('normal')">BREAKING IN</span> 
-                    <span style="color: #555;">//</span> 
+                    <span style="color: var(--text-dim);">//</span> 
                     <span class="defensive-text" onmouseover="setMode('blue')" onmouseout="setMode('normal')">TO KEEP THEM OUT</span>
                 </p>
                 
