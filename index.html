@@ -8,21 +8,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Core Colors */
-            --bg: #0a0d17;
-            --surface: #111420; /* Solid dark color for cards */
+            /* Core Colors - RED TEAM BACKGROUND */
+            --bg: #120202; /* Deep dark crimson */
+            --surface: #1c0505; /* Slightly lighter red for the cards */
             --red: #ff3e3e;
             --blue: #4d5ae5;
             
             /* Text Colors */
             --text-main: #ffffff;       
-            --text-dim: #c0c7d1;        /* Very Bright Gray for readability */
+            --text-dim: #ffcaca; /* Bright gray with a slight red tint */
             
-            --border: rgba(255, 255, 255, 0.1); 
+            --border: rgba(255, 62, 62, 0.2); /* Red tinted borders */
             
             /* Dynamic Variables */
             --active-color: #ffffff;
-            --glow-color: rgba(255, 255, 255, 0.05);
+            --glow-color: rgba(255, 62, 62, 0.1); /* Default red glow */
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; transition: all 0.3s ease; }
@@ -36,9 +36,9 @@
             line-height: 1.6;
         }
 
-        /* --- RED TEAM MODE --- */
+        /* --- RED TEAM MODE (Active Hover) --- */
         body.mode-red {
-            --glow-color: rgba(255, 62, 62, 0.35);
+            --glow-color: rgba(255, 62, 62, 0.4);
             --active-color: var(--red);
         }
         body.mode-red .repo-title, 
@@ -49,12 +49,11 @@
             text-shadow: 0 0 10px rgba(255, 62, 62, 0.4);
         }
         body.mode-red .defensive-text { opacity: 0.2; filter: blur(2px); }
-        /* In Red Mode, border is red, but hover still gets dual glow */
         body.mode-red .trait-card, body.mode-red .repo-card { border-color: var(--red); }
 
-        /* --- BLUE TEAM MODE --- */
+        /* --- BLUE TEAM MODE (Active Hover) --- */
         body.mode-blue {
-            --glow-color: rgba(77, 90, 229, 0.35);
+            --glow-color: rgba(77, 90, 229, 0.4);
             --active-color: var(--blue);
         }
         body.mode-blue .repo-title, 
@@ -65,19 +64,18 @@
             text-shadow: 0 0 10px rgba(77, 90, 229, 0.4);
         }
         body.mode-blue .offensive-text { opacity: 0.2; filter: blur(2px); }
-        /* In Blue Mode, border is blue, but hover still gets dual glow */
         body.mode-blue .trait-card, body.mode-blue .repo-card { border-color: var(--blue); }
 
         .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
 
-        /* --- Navigation (UPDATED: Transparent again) --- */
+        /* --- Navigation --- */
         header.nav-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 25px 0;
             border-bottom: 1px solid var(--border);
-            background: transparent; /* Removed the black banner */
+            background: transparent; 
         }
         .logo { font-size: 22px; font-weight: 900; letter-spacing: 1px; text-decoration: none; color: var(--text-main); }
         .logo span { color: var(--red); }
@@ -133,9 +131,9 @@
         .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; text-align: center; margin-bottom: 4rem; }
         .repo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
 
-        /* --- Cards (UPDATED: Dual Color Hover Glow) --- */
+        /* --- Cards --- */
         .trait-card, .repo-card {
-            background-color: #111420;
+            background-color: var(--surface);
             border: 1px solid var(--border);
             border-radius: 12px;
             padding: 2.5rem;
@@ -146,12 +144,11 @@
         }
         .trait-card:hover, .repo-card:hover { 
             transform: translateY(-5px); 
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 62, 62, 0.05);
             border-color: var(--active-color);
-            /* NEW: Dual Red/Blue Glow on Hover */
             box-shadow: 
-                -10px 0 30px -10px rgba(255, 62, 62, 0.5), /* Left side Red */
-                10px 0 30px -10px rgba(77, 90, 229, 0.5);  /* Right side Blue */
+                -10px 0 30px -10px rgba(255, 62, 62, 0.5), 
+                10px 0 30px -10px rgba(77, 90, 229, 0.5);  
         }
         
         .trait-card-quote { font-size: 1.1rem; font-weight: 700; border-left: 3px solid var(--active-color); padding-left: 1rem; margin: 0 0 1.5rem; color: var(--text-main); }
@@ -281,13 +278,13 @@
                 body.classList.remove('mode-blue');
                 logoSpan.style.color = 'var(--red)';
                 avatar.style.borderColor = 'var(--red)';
-                avatar.style.boxShadow = '0 0 30px rgba(255, 62, 62, 0.5)';
+                avatar.style.boxShadow = '0 0 40px rgba(255, 62, 62, 0.6)';
             } else if (mode === 'blue') {
                 body.classList.add('mode-blue');
                 body.classList.remove('mode-red');
                 logoSpan.style.color = 'var(--blue)';
                 avatar.style.borderColor = 'var(--blue)';
-                avatar.style.boxShadow = '0 0 30px rgba(77, 90, 229, 0.5)';
+                avatar.style.boxShadow = '0 0 40px rgba(77, 90, 229, 0.6)';
             } else {
                 body.classList.remove('mode-red');
                 body.classList.remove('mode-blue');
