@@ -8,28 +8,31 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Core Colors - RED TEAM BACKGROUND */
-            --bg: #120202; /* Deep dark crimson */
-            --surface: #1c0505; /* Slightly lighter red for the cards */
+            /* Core Colors - PURPLE TEAM (Mixed Red & Blue) */
+            --bg-base: #0a0510; /* Deep dark indigo/purple */
+            --surface: #140a1e; /* Slightly lighter purple tint for the cards */
             --red: #ff3e3e;
             --blue: #4d5ae5;
             
             /* Text Colors */
             --text-main: #ffffff;       
-            --text-dim: #ffcaca; /* Bright gray with a slight red tint */
+            --text-dim: #d4d4e0; 
             
-            --border: rgba(255, 62, 62, 0.2); /* Red tinted borders */
+            --border: rgba(255, 255, 255, 0.08); 
             
             /* Dynamic Variables */
             --active-color: #ffffff;
-            --glow-color: rgba(255, 62, 62, 0.1); /* Default red glow */
+            /* DEFAULT MIXED BACKGROUND: Red top-left, Blue bottom-right */
+            --bg-visual: 
+                radial-gradient(circle at 15% 0%, rgba(255, 62, 62, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 85% 100%, rgba(77, 90, 229, 0.15) 0%, transparent 50%);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; transition: all 0.3s ease; }
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; transition: all 0.4s ease; }
         
         body {
-            background-color: var(--bg);
-            background: radial-gradient(circle at 50% 30%, var(--glow-color) 0%, var(--bg) 80%);
+            background-color: var(--bg-base);
+            background-image: var(--bg-visual);
             background-attachment: fixed;
             color: var(--text-main);
             font-family: 'Plus Jakarta Sans', sans-serif;
@@ -38,7 +41,8 @@
 
         /* --- RED TEAM MODE (Active Hover) --- */
         body.mode-red {
-            --glow-color: rgba(255, 62, 62, 0.4);
+            /* Overpower the mixed background with pure Red */
+            --bg-visual: radial-gradient(circle at 50% 30%, rgba(255, 62, 62, 0.35) 0%, transparent 80%);
             --active-color: var(--red);
         }
         body.mode-red .repo-title, 
@@ -53,7 +57,8 @@
 
         /* --- BLUE TEAM MODE (Active Hover) --- */
         body.mode-blue {
-            --glow-color: rgba(77, 90, 229, 0.4);
+            /* Overpower the mixed background with pure Blue */
+            --bg-visual: radial-gradient(circle at 50% 30%, rgba(77, 90, 229, 0.35) 0%, transparent 80%);
             --active-color: var(--blue);
         }
         body.mode-blue .repo-title, 
@@ -144,7 +149,7 @@
         }
         .trait-card:hover, .repo-card:hover { 
             transform: translateY(-5px); 
-            background: rgba(255, 62, 62, 0.05);
+            background: rgba(255, 255, 255, 0.03);
             border-color: var(--active-color);
             box-shadow: 
                 -10px 0 30px -10px rgba(255, 62, 62, 0.5), 
