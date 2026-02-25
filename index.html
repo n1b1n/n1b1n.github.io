@@ -53,7 +53,7 @@
         }
         body.mode-red .defensive-text { opacity: 0.2; filter: blur(2px); }
         body.mode-red .trait-card, body.mode-red .repo-card { border-color: var(--red); }
-        body.mode-red .social-links a:hover { border-color: var(--red); color: var(--red); box-shadow: 0 0 15px rgba(255, 62, 62, 0.4); }
+        body.mode-red .social-links a:hover, body.mode-red .nav-socials a:hover { border-color: var(--red); color: var(--red); box-shadow: 0 0 15px rgba(255, 62, 62, 0.4); }
 
         /* --- BLUE TEAM MODE --- */
         body.mode-blue {
@@ -69,7 +69,7 @@
         }
         body.mode-blue .offensive-text { opacity: 0.2; filter: blur(2px); }
         body.mode-blue .trait-card, body.mode-blue .repo-card { border-color: var(--blue); }
-        body.mode-blue .social-links a:hover { border-color: var(--blue); color: var(--blue); box-shadow: 0 0 15px rgba(77, 90, 229, 0.4); }
+        body.mode-blue .social-links a:hover, body.mode-blue .nav-socials a:hover { border-color: var(--blue); color: var(--blue); box-shadow: 0 0 15px rgba(77, 90, 229, 0.4); }
 
         .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
 
@@ -83,9 +83,14 @@
             background: transparent; 
         }
         .logo { font-size: 22px; font-weight: 900; letter-spacing: 1px; text-decoration: none; color: var(--text-main); }
-        .logo span { color: var(--red); }
-        nav a { color: var(--text-dim); text-decoration: none; margin-left: 30px; font-size: 14px; font-weight: 600; text-transform: uppercase; }
-        nav a:hover { color: var(--text-main); }
+        .logo span { color: var(--red); } /* George is colored */
+        
+        /* Top Navigation Social Icons */
+        .nav-socials { display: flex; gap: 20px; align-items: center; }
+        .nav-socials a { color: var(--text-dim); font-size: 1.5rem; transition: all 0.3s ease; display: flex; align-items: center; text-decoration: none; }
+        .nav-socials a:hover { color: var(--text-main); transform: translateY(-3px); }
+        .thm-icon-nav { width: 22px; height: 22px; filter: grayscale(100%) opacity(0.7); transition: all 0.3s ease; }
+        .nav-socials a:hover .thm-icon-nav { filter: grayscale(0%) opacity(1); }
 
         /* --- Tactical Header --- */
         .about-header { text-align: center; padding: 5rem 0; border-bottom: 1px solid var(--border); }
@@ -214,12 +219,18 @@
 
     <div class="container">
         <header class="nav-header">
-            <a href="#" class="logo">NIBIN<span>GEORGE</span></a>
-            <nav>
-                <a href="#home">Briefing</a>
-                <a href="#matrix">Matrix</a>
-                <a href="#arsenal">Arsenal</a>
-                <a href="mailto:nibinkalladayil@gmail.com">Contact</a>
+            <a href="#" class="logo">Nibin <span>George</span></a>
+            
+            <nav class="nav-socials">
+                <a href="https://tryhackme.com/p/n1b1n" target="_blank" aria-label="TryHackMe Profile">
+                    <img src="https://tryhackme.com/img/favicon/favicon-32x32.png" alt="TryHackMe" class="thm-icon-nav">
+                </a>
+                <a href="https://github.com/n1b1n" target="_blank" aria-label="GitHub Profile">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/nbn-grg/" target="_blank" aria-label="LinkedIn Profile">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
             </nav>
         </header>
 
@@ -305,7 +316,7 @@
             
             <div class="social-links">
                 <a href="https://tryhackme.com/p/n1b1n" target="_blank" aria-label="TryHackMe Profile">
-                    <img src="https://tryhackme.com/img/favicon/favicon-32x32.png" alt="THM" class="thm-icon">
+                    <img src="https://tryhackme.com/img/favicon/favicon-32x32.png" alt="TryHackMe" class="thm-icon">
                 </a>
                 <a href="https://github.com/n1b1n" target="_blank" aria-label="GitHub Profile">
                     <i class="fa-brands fa-github"></i>
@@ -318,7 +329,7 @@
             <a href="mailto:nibinkalladayil@gmail.com" class="contact-btn">nibinkalladayil@gmail.com</a>
             
             <div style="margin-top: 40px; opacity: 0.5;">
-                © 2026 NIBIN GEORGE — DEFENSIVE MINDSET // OFFENSIVE SKILLS
+                © 2026 NIBIN.SEC — DEFENSIVE MINDSET // OFFENSIVE SKILLS
             </div>
         </footer>
     </div>
