@@ -83,14 +83,16 @@
             background: transparent; 
         }
         .logo { font-size: 22px; font-weight: 900; letter-spacing: 1px; text-decoration: none; color: var(--text-main); }
-        .logo span { color: var(--red); } /* George is colored */
+        .logo span { color: var(--red); } 
         
         /* Top Navigation Social Icons */
         .nav-socials { display: flex; gap: 20px; align-items: center; }
         .nav-socials a { color: var(--text-dim); font-size: 1.5rem; transition: all 0.3s ease; display: flex; align-items: center; text-decoration: none; }
         .nav-socials a:hover { color: var(--text-main); transform: translateY(-3px); }
-        .thm-icon-nav { width: 22px; height: 22px; filter: grayscale(100%) opacity(0.7); transition: all 0.3s ease; }
-        .nav-socials a:hover .thm-icon-nav { filter: grayscale(0%) opacity(1); }
+        
+        /* Updated THM Icon CSS (Removed Grayscale) */
+        .thm-icon-nav { width: 24px; height: 24px; object-fit: contain; transition: all 0.3s ease; opacity: 0.8; }
+        .nav-socials a:hover .thm-icon-nav { opacity: 1; filter: drop-shadow(0 0 5px rgba(255, 62, 62, 0.5)); }
 
         /* --- Tactical Header --- */
         .about-header { text-align: center; padding: 5rem 0; border-bottom: 1px solid var(--border); }
@@ -204,15 +206,10 @@
             color: var(--active-color);
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
         }
-        .thm-icon {
-            width: 20px;
-            height: 20px;
-            filter: grayscale(100%) opacity(0.7);
-            transition: all 0.3s ease;
-        }
-        .social-links a:hover .thm-icon {
-            filter: grayscale(0%) opacity(1);
-        }
+        
+        /* Updated Footer THM Icon CSS */
+        .thm-icon { width: 22px; height: 22px; object-fit: contain; transition: all 0.3s ease; opacity: 0.8; }
+        .social-links a:hover .thm-icon { opacity: 1; transform: scale(1.1); filter: drop-shadow(0 0 5px rgba(255, 62, 62, 0.5)); }
     </style>
 </head>
 <body>
@@ -223,7 +220,7 @@
             
             <nav class="nav-socials">
                 <a href="https://tryhackme.com/p/n1b1n" target="_blank" aria-label="TryHackMe Profile">
-                    <img src="https://tryhackme.com/img/favicon/favicon-28x28.png" alt="THM" class="thm-icon-nav">
+                    <img src="thm-logo.png" alt="TryHackMe" class="thm-icon-nav">
                 </a>
                 <a href="https://github.com/n1b1n" target="_blank" aria-label="GitHub Profile">
                     <i class="fa-brands fa-github"></i>
@@ -316,7 +313,7 @@
             
             <div class="social-links">
                 <a href="https://tryhackme.com/p/n1b1n" target="_blank" aria-label="TryHackMe Profile">
-                    <img src="https://tryhackme.com/img/favicon/favicon-28x28.png" alt="THM" class="thm-icon">
+                    <img src="thm-logo.png" alt="TryHackMe" class="thm-icon">
                 </a>
                 <a href="https://github.com/n1b1n" target="_blank" aria-label="GitHub Profile">
                     <i class="fa-brands fa-github"></i>
