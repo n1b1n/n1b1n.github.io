@@ -3,25 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amal Suresh | Concept Artist</title>
+    <title>Amal Suresh | Concept Artist Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;600&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --sidebar-width: 320px;
-            /* Rich Professional Palette */
-            --bg-deep: #020406; /* Midnight Obsidian */
-            --bg-gradient: radial-gradient(circle at 20% 30%, #0a1118 0%, #020406 100%);
+            --bg-deep: #020406; 
             --accent-blue: #00d4ff;
-            --accent-glow: rgba(0, 212, 255, 0.15);
+            --accent-glow: rgba(0, 212, 255, 0.2);
             --text-main: #ffffff;
             --text-muted: #6b7c89;
+            --glass-bg: rgba(2, 4, 6, 0.85);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background: var(--bg-deep);
-            background: var(--bg-gradient);
+            background-color: var(--bg-deep);
+            /* Rich Gradient Background */
+            background-image: radial-gradient(circle at 15% 50%, #0a141d 0%, #020406 100%);
             background-attachment: fixed;
             color: var(--text-main);
             font-family: 'Inter', sans-serif;
@@ -29,7 +30,7 @@
             min-height: 100vh;
         }
 
-        /* SIDEBAR WITH GLASSMORPHISM */
+        /* --- SIDEBAR NAVIGATION --- */
         aside {
             width: var(--sidebar-width);
             height: 100vh;
@@ -37,90 +38,96 @@
             left: 0;
             top: 0;
             padding: 80px 50px;
-            background: rgba(2, 4, 6, 0.7);
-            backdrop-filter: blur(20px); /* Frosted glass effect */
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
             display: flex;
             flex-direction: column;
             border-right: 1px solid rgba(255, 255, 255, 0.05);
             z-index: 100;
         }
 
-        .logo-name { 
-            font-size: 14px; 
-            letter-spacing: 6px; 
+        .brand { margin-bottom: 60px; }
+        
+        .artist-name { 
+            font-size: 13px; 
+            letter-spacing: 5px; 
             text-transform: uppercase; 
             color: var(--accent-blue);
             font-weight: 600;
-            margin-bottom: 8px;
-            text-shadow: 0 0 15px var(--accent-glow);
+            margin-bottom: 5px;
+            display: block;
         }
 
-        .portfolio-title {
+        .portfolio-label {
             font-family: 'Playfair Display', serif;
             font-style: italic;
             font-size: 38px;
-            line-height: 1;
-            margin-bottom: 60px;
-            background: linear-gradient(to right, #fff, #888);
+            background: linear-gradient(to right, #ffffff 30%, #444 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         nav ul { list-style: none; }
-        nav ul li { margin-bottom: 24px; }
+        nav ul li { margin-bottom: 25px; }
         nav ul li a {
             text-decoration: none;
             color: var(--text-muted);
             font-size: 15px;
-            font-weight: 300;
             letter-spacing: 1px;
-            transition: all 0.4s ease;
-            display: block;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-block;
         }
 
         nav ul li a:hover { 
             color: var(--accent-blue); 
-            transform: translateX(8px);
-            text-shadow: 0 0 10px var(--accent-glow);
+            transform: translateX(10px);
+            text-shadow: 0 0 15px var(--accent-glow);
         }
 
-        .contact-info {
+        .contact-sidebar {
             margin-top: auto;
             font-size: 12px;
             color: var(--text-muted);
-            line-height: 2;
+            line-height: 1.8;
         }
-        
-        .contact-info strong { color: #fff; display: block; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* MAIN CONTENT - MASONRY STYLE */
+        .contact-sidebar strong { 
+            color: #fff; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            display: block; 
+            margin-bottom: 10px;
+            font-size: 10px;
+        }
+
+        /* --- MAIN ART GALLERY --- */
         main {
             margin-left: var(--sidebar-width);
             width: calc(100% - var(--sidebar-width));
-            padding: 15px;
+            padding: 10px;
         }
 
         .art-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
-            gap: 15px;
+            gap: 10px;
         }
 
         .art-card {
             position: relative;
-            height: 85vh;
+            height: 85vh; /* Large Vertical Cards */
             overflow: hidden;
             background: #000;
             border-radius: 4px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            cursor: pointer;
         }
 
         .art-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: brightness(0.9) contrast(1.1);
-            transition: transform 1.2s cubic-bezier(0.15, 0.83, 0.66, 1);
+            filter: brightness(0.8) contrast(1.1);
+            transition: transform 1.5s cubic-bezier(0.1, 0.7, 0.3, 1), filter 0.8s;
         }
 
         .art-card:hover img {
@@ -128,29 +135,30 @@
             filter: brightness(1.1) contrast(1);
         }
 
-        /* CARD OVERLAY */
+        /* OVERLAY EFFECTS */
         .overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to bottom, transparent 50%, rgba(2, 4, 6, 0.9));
+            background: linear-gradient(to bottom, transparent 40%, rgba(2, 4, 6, 0.95));
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
             padding: 50px;
             opacity: 0;
-            transition: opacity 0.5s ease;
+            transition: opacity 0.6s ease;
         }
 
         .art-card:hover .overlay { opacity: 1; }
 
-        .art-title {
+        .art-card h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 24px;
+            font-size: 28px;
             font-style: italic;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+            color: #fff;
         }
 
-        .view-btn {
+        .view-project {
             width: fit-content;
             padding: 12px 30px;
             background: var(--accent-blue);
@@ -158,48 +166,43 @@
             font-size: 11px;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            border-radius: 50px;
-            box-shadow: 0 10px 20px var(--accent-glow);
+            letter-spacing: 3px;
+            border-radius: 2px;
+            box-shadow: 0 10px 25px var(--accent-glow);
         }
 
-        /* RESPONSIVE */
-        @media (max-width: 1024px) {
+        /* --- RESPONSIVE FIX --- */
+        @media (max-width: 1100px) {
             body { flex-direction: column; }
             aside { 
-                position: relative; 
-                width: 100%; 
-                height: auto; 
-                padding: 60px 30px; 
-                border-right: none;
-                border-bottom: 1px solid rgba(255,255,255,0.05);
+                position: relative; width: 100%; height: auto; 
+                padding: 60px 40px; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.05);
             }
             main { margin-left: 0; width: 100%; }
-            .art-card { height: 70vh; }
+            .art-card { height: 65vh; }
         }
     </style>
 </head>
 <body>
 
     <aside>
-        <div class="logo-box">
-            <p class="logo-name">Amal Suresh</p>
+        <div class="brand">
+            <span class="artist-name">Amal Suresh</span>
+            <h1 class="portfolio-label">Portfolio</h1>
         </div>
-
-        <h1 class="portfolio-title">Visual Project<br>Archives</h1>
 
         <nav>
             <ul>
-                <li><a href="#">Work</a></li>
-                <li><a href="https://www.artstation.com/" target="_blank">Artstation</a></li>
-                <li><a href="https://www.instagram.com/" target="_blank">Instagram</a></li>
-                <li><a href="#">About & Contact</a></li>
+                <li><a href="#work">Featured Work</a></li>
+                <li><a href="https://artstation.com" target="_blank">Artstation</a></li>
+                <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
+                <li><a href="#about">About Me</a></li>
             </ul>
         </nav>
 
-        <div class="contact-info">
+        <div class="contact-sidebar">
             <strong>Inquiries</strong>
-            <p>amal_suresh@conceptart.com</p>
+            <p>amal.suresh@conceptart.com</p>
             <p>Kerala, India</p>
         </div>
     </aside>
@@ -207,30 +210,52 @@
     <main>
         <div class="art-grid">
             <div class="art-card">
-                <img src="art1.jpg" alt="Art 1">
+                <img src="art1.jpg" alt="Waterfall Temple">
                 <div class="overlay">
-                    <h3 class="art-title">The Waterfall Sanctuary</h3>
-                    <div class="view-btn">Expand Project</div>
+                    <h3>Waterfall Sanctuary</h3>
+                    <div class="view-project">View Project</div>
                 </div>
             </div>
 
             <div class="art-card">
-                <img src="art2.jpg" alt="Art 2">
+                <img src="art2.jpg" alt="Galaxy Tree">
                 <div class="overlay">
-                    <h3 class="art-title">Nebula Tree Study</h3>
-                    <div class="view-btn">Expand Project</div>
+                    <h3>The Celestial Arbor</h3>
+                    <div class="view-project">View Project</div>
                 </div>
             </div>
 
             <div class="art-card">
-                <img src="art3.jpg" alt="Art 3">
+                <img src="art3.jpg" alt="Anime City">
                 <div class="overlay">
-                    <h3 class="art-title">Neo-City Dusk</h3>
-                    <div class="view-btn">Expand Project</div>
+                    <h3>District 07: Dusk</h3>
+                    <div class="view-project">View Project</div>
                 </div>
             </div>
         </div>
     </main>
+
+    <script>
+        document.querySelectorAll('.art-card').forEach(card => {
+            card.onclick = () => {
+                const img = card.querySelector('img');
+                const modal = document.createElement('div');
+                modal.style.cssText = `
+                    position: fixed; top:0; left:0; width:100%; height:100%;
+                    background: rgba(0,0,0,0.98); z-index:9999;
+                    display:flex; align-items:center; justify-content:center;
+                    cursor: zoom-out;
+                `;
+                const fullImg = document.createElement('img');
+                fullImg.src = img.src;
+                fullImg.style.cssText = `max-width:95%; max-height:95%; border: 1px solid var(--accent-blue);`;
+                
+                modal.appendChild(fullImg);
+                document.body.appendChild(modal);
+                modal.onclick = () => modal.remove();
+            };
+        });
+    </script>
 
 </body>
 </html>
