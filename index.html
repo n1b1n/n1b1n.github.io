@@ -5,96 +5,127 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amal Suresh | Concept Artist Portfolio</title>
     <style>
+        /* COLOR THEME & RESET */
         :root {
             --bg-dark: #050505;
-            --bg-card: #111111;
+            --bg-nav: #0a0a0a;
             --accent-blue: #00d4ff;
-            --text-white: #ffffff;
-            --text-dim: #999;
+            --text-main: #ffffff;
+            --text-dim: #888;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             background-color: var(--bg-dark) !important;
-            color: var(--text-white);
-            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.6;
             overflow-x: hidden;
         }
 
+        /* NAVIGATION */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 25px 8%;
-            background-color: rgba(10, 10, 10, 0.95);
+            padding: 20px 8%;
+            background-color: var(--bg-nav);
             border-bottom: 1px solid #1a1a1a;
             position: sticky;
             top: 0;
             z-index: 1000;
-            backdrop-filter: blur(10px);
         }
 
         .logo {
-            font-size: 20px;
-            font-weight: 800;
+            font-size: 22px;
+            font-weight: bold;
             letter-spacing: 5px;
             color: var(--accent-blue);
             text-transform: uppercase;
         }
 
-        header { padding: 120px 8% 60px 8%; }
-        header h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 15px; font-weight: 800; }
-        header h1 span { color: var(--accent-blue); }
-        header p { color: var(--text-dim); font-size: 1.2rem; max-width: 600px; border-left: 2px solid var(--accent-blue); padding-left: 20px; }
+        /* HERO HEADER */
+        header {
+            padding: 100px 8% 40px 8%;
+            background: linear-gradient(to bottom, #0a0a0a, #050505);
+        }
 
+        header h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        header h1 span {
+            color: var(--accent-blue);
+        }
+
+        header p {
+            color: var(--text-dim);
+            font-size: 1.2rem;
+            max-width: 700px;
+            border-left: 3px solid var(--accent-blue);
+            padding-left: 20px;
+        }
+
+        /* GALLERY GRID */
         .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
             gap: 30px;
             padding: 40px 8%;
         }
 
         .art-card {
-            background-color: var(--bg-card);
+            background-color: #111;
             border: 1px solid #222;
             position: relative;
             overflow: hidden;
             border-radius: 8px;
             cursor: zoom-in;
-            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .art-card:hover {
             border-color: var(--accent-blue);
-            transform: scale(1.02);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.15);
         }
 
         .art-card img {
             width: 100%;
-            height: 500px;
+            height: 550px; /* Tall height to show off details */
             object-fit: cover;
             display: block;
-            transition: 0.5s;
+            transition: 0.6s;
+        }
+
+        .art-card:hover img {
+            transform: scale(1.03);
         }
 
         .label {
             position: absolute;
-            bottom: 20px;
-            left: 20px;
-            background: rgba(0, 0, 0, 0.8);
+            bottom: 25px;
+            left: 25px;
+            background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(5px);
             color: var(--accent-blue);
-            padding: 6px 15px;
+            padding: 8px 18px;
             font-weight: bold;
-            font-size: 11px;
+            font-size: 12px;
             text-transform: uppercase;
             letter-spacing: 2px;
             border: 1px solid var(--accent-blue);
-            border-radius: 40px;
+            border-radius: 4px;
         }
 
+        /* ABOUT SECTION */
         #about {
             padding: 100px 8%;
             background-color: #080808;
@@ -105,27 +136,51 @@
         }
 
         .about-text { flex: 1; min-width: 300px; }
-        .about-text h2 { font-size: 2.5rem; color: #fff; margin-bottom: 25px; }
+        .about-text h2 { font-size: 2.5rem; margin-bottom: 20px; color: var(--accent-blue); }
+        .about-text p { color: #ccc; font-size: 1.1rem; margin-bottom: 20px; }
 
-        #contact { padding: 120px 8%; text-align: center; }
-        .contact-btn {
+        /* CONTACT SECTION */
+        #contact {
+            padding: 120px 8%;
+            text-align: center;
+            background-color: var(--bg-dark);
+        }
+
+        .btn {
             display: inline-block;
             padding: 20px 60px;
-            color: var(--accent-blue);
             border: 2px solid var(--accent-blue);
+            color: var(--accent-blue);
             text-decoration: none;
             font-weight: bold;
+            font-size: 1rem;
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
             transition: 0.4s;
+            border-radius: 4px;
         }
 
-        .contact-btn:hover {
+        .btn:hover {
             background-color: var(--accent-blue);
             color: #000;
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.4);
         }
 
-        footer { padding: 50px 8%; text-align: center; color: #333; font-size: 11px; letter-spacing: 3px; }
+        footer {
+            padding: 60px 8%;
+            text-align: center;
+            color: #333;
+            font-size: 12px;
+            letter-spacing: 3px;
+            border-top: 1px solid #111;
+        }
+
+        /* MOBILE FIX */
+        @media (max-width: 768px) {
+            .gallery { grid-template-columns: 1fr; }
+            header h1 { font-size: 2.5rem; }
+            #about { text-align: center; }
+        }
     </style>
 </head>
 <body>
@@ -136,22 +191,22 @@
 
     <header>
         <h1>Concept <span>Artist</span></h1>
-        <p>Visualizing cinematic worlds and atmospheric environments through digital painting.</p>
+        <p>Creating visual narratives and atmospheric worlds for film and games.</p>
     </header>
 
     <section class="gallery">
         <div class="art-card">
-            <img src="anime-waterfall-scene.jpg.jpg" alt="Waterfall Temple">
-            <div class="label">Environment Concept</div>
+            <img src="anime-waterfall-scene.jpg.jpg" alt="Waterfall Temple Concept">
+            <div class="label">Environment Design</div>
         </div>
 
         <div class="art-card">
-            <img style="object-position: top;" src="fantasy-style-galaxy-background.jpg.jpg" alt="Galaxy Tree">
+            <img src="fantasy-style-galaxy-background.jpg.jpg" alt="Cosmic Tree Art">
             <div class="label">Atmospheric Study</div>
         </div>
 
         <div class="art-card">
-            <img src="illustration-anime-city.jpg.jpg" alt="Anime City">
+            <img src="illustration-anime-city.jpg.jpg" alt="Anime City Street Illustration">
             <div class="label">Urban Visuals</div>
         </div>
     </section>
@@ -159,31 +214,39 @@
     <section id="about">
         <div class="about-text">
             <h2>The Vision</h2>
-            <p>Amal Suresh is a digital artist dedicated to the craft of world-building. Every stroke is designed to build immersion and tell a story through light and scale.</p>
+            <p>Amal Suresh is a digital artist specialized in environment design. By focusing on the play between light, shadow, and massive scale, he builds worlds that tell a story before a single word is spoken.</p>
+            <p>Available for freelance opportunities and long-term project collaborations.</p>
         </div>
     </section>
 
     <section id="contact">
-        <a href="mailto:amal@example.com" class="contact-btn">Work With Me</a>
+        <a href="mailto:amal@example.com" class="btn">Get In Touch</a>
     </section>
 
     <footer>
-        &copy; 2026 AMAL SURESH. ALL ARTWORK BY THE ARTIST.
+        &copy; 2026 AMAL SURESH | ALL RIGHTS RESERVED
     </footer>
 
     <script>
         document.querySelectorAll('.art-card img').forEach(image => {
             image.onclick = () => {
                 const viewer = document.createElement('div');
-                viewer.style.cssText = `position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:9999;display:flex;align-items:center;justify-content:center;cursor:zoom-out;`;
+                viewer.style.cssText = `
+                    position: fixed; top:0; left:0; width:100%; height:100%;
+                    background: rgba(0,0,0,0.95); z-index:9999;
+                    display:flex; align-items:center; justify-content:center;
+                    cursor: zoom-out;
+                `;
                 const fullImg = document.createElement('img');
                 fullImg.src = image.src;
-                fullImg.style.cssText = `max-width:95%; max-height:95%; border: 1px solid var(--accent-blue);`;
+                fullImg.style.cssText = `max-width:90%; max-height:90%; border: 1px solid var(--accent-blue); box-shadow: 0 0 50px rgba(0,0,0,1);`;
+                
                 viewer.appendChild(fullImg);
                 document.body.appendChild(viewer);
                 viewer.onclick = () => viewer.remove();
             };
         });
     </script>
+
 </body>
 </html>
