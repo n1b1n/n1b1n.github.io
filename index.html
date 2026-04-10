@@ -3,63 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amal Suresh | Concept Artist</title>
+    <title>Amal Suresh | Concept Artist Portfolio</title>
     <style>
-        /* RESET & BASE COLORS */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body { 
-            background-color: #050505 !important; /* Forces black background */
-            color: #ffffff; 
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
+        /* CSS STYLES */
+        :root {
+            --bg-dark: #050505;
+            --bg-nav: #0a0a0a;
+            --accent-blue: #00d4ff;
+            --text-white: #ffffff;
+            --text-dim: #888;
         }
 
-        /* NAVIGATION */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-dark) !important;
+            color: var(--text-white);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 5%;
-            background-color: #0a0a0a;
-            border-bottom: 2px solid #00d4ff; /* Blue accent line */
+            padding: 20px 8%;
+            background-color: var(--bg-nav);
+            border-bottom: 1px solid #1a1a1a;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         .logo {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: bold;
-            letter-spacing: 3px;
-            color: #00d4ff; /* Electric Blue */
+            letter-spacing: 4px;
+            color: var(--accent-blue);
+            text-transform: uppercase;
         }
 
-        nav ul { display: flex; list-style: none; }
-        nav ul li { margin-left: 30px; }
-        nav ul li a { color: #888; text-decoration: none; text-transform: uppercase; font-size: 14px; transition: 0.3s; }
-        nav ul li a:hover { color: #00d4ff; }
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
 
-        /* HERO SECTION */
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            color: var(--text-dim);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-blue);
+        }
+
+        /* Header */
         header {
-            padding: 80px 5%;
-            background: linear-gradient(to bottom, #0a0a0a, #050505);
-            text-align: left;
+            padding: 100px 8%;
+            background: linear-gradient(to bottom, var(--bg-nav), var(--bg-dark));
         }
 
         header h1 {
-            font-size: 50px;
+            font-size: 3.5rem;
             margin-bottom: 10px;
-            color: #ffffff;
+            line-height: 1.1;
         }
 
-        header h1 span { color: #00d4ff; } /* Highlighted Name Part */
+        header h1 span {
+            color: var(--accent-blue);
+        }
 
-        header p { color: #aaa; max-width: 600px; font-size: 18px; }
+        header p {
+            color: var(--text-dim);
+            font-size: 1.2rem;
+            max-width: 700px;
+        }
 
-        /* GALLERY GRID */
+        /* Gallery Grid */
         .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 20px;
-            padding: 40px 5%;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+            padding: 50px 8%;
         }
 
         .art-card {
@@ -67,71 +106,108 @@
             border: 1px solid #222;
             position: relative;
             overflow: hidden;
+            cursor: zoom-in;
+            border-radius: 4px;
             transition: 0.4s;
-            height: 300px;
         }
 
         .art-card:hover {
-            border-color: #00d4ff;
-            transform: translateY(-5px);
+            border-color: var(--accent-blue);
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.1);
         }
 
         .art-card img {
             width: 100%;
-            height: 100%;
+            height: 400px;
             object-fit: cover;
-            opacity: 0.8;
-            transition: 0.4s;
+            display: block;
+            opacity: 0.85;
+            transition: 0.5s;
         }
 
-        .art-card:hover img { opacity: 1; }
+        .art-card:hover img {
+            opacity: 1;
+            transform: scale(1.02);
+        }
 
         .label {
             position: absolute;
-            bottom: 0;
-            background: rgba(0, 212, 255, 0.9);
+            bottom: 20px;
+            left: 20px;
+            background: var(--accent-blue);
             color: #000;
-            padding: 5px 15px;
+            padding: 4px 12px;
             font-weight: bold;
-            font-size: 12px;
+            font-size: 11px;
             text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 2px;
         }
 
-        /* ABOUT */
+        /* About Section */
         #about {
-            padding: 80px 5%;
-            background-color: #0a0a0a;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 40px;
+            padding: 100px 8%;
+            background-color: var(--bg-nav);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
         }
 
-        .about-box { flex: 1; min-width: 300px; }
-        .about-box h2 { color: #00d4ff; margin-bottom: 20px; font-size: 32px; }
-        .about-box p { color: #ccc; font-size: 16px; margin-bottom: 20px; }
+        .about-text h2 {
+            font-size: 2.5rem;
+            color: var(--accent-blue);
+            margin-bottom: 20px;
+        }
 
-        /* CONTACT */
+        .about-text p {
+            color: #ccc;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        /* Contact Section */
         #contact {
-            padding: 100px 5%;
+            padding: 100px 8%;
             text-align: center;
-            background-color: #050505;
         }
 
-        .btn {
+        .contact-btn {
             display: inline-block;
-            padding: 15px 40px;
-            background-color: #00d4ff;
+            padding: 18px 50px;
+            background-color: var(--accent-blue);
             color: #000;
             text-decoration: none;
             font-weight: bold;
-            border-radius: 5px;
+            font-size: 1.1rem;
+            border-radius: 4px;
             transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .btn:hover { background-color: #ffffff; box-shadow: 0 0 20px #00d4ff; }
+        .contact-btn:hover {
+            background-color: #fff;
+            box-shadow: 0 0 25px rgba(0, 212, 255, 0.4);
+        }
 
-        footer { padding: 40px; text-align: center; color: #444; font-size: 12px; border-top: 1px solid #111; }
+        footer {
+            padding: 60px 8%;
+            text-align: center;
+            border-top: 1px solid #1a1a1a;
+            color: #444;
+            font-size: 12px;
+            letter-spacing: 2px;
+        }
 
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.5rem; }
+            .gallery { grid-template-columns: 1fr; }
+            #about { grid-template-columns: 1fr; text-align: center; }
+            nav ul { display: none; }
+        }
     </style>
 </head>
 <body>
@@ -146,54 +222,73 @@
     </nav>
 
     <header>
-        <h1>Concept <span>Artist</span></h1>
-        <p>Creating immersive environments and character designs for games and film.</p>
+        <h1>Concept <span>Artist</span> & <br>Visual Storyteller</h1>
+        <p>Specializing in cinematic environments, lighting studies, and digital world-building for the entertainment industry.</p>
     </header>
 
     <section id="work" class="gallery">
         <div class="art-card">
-            <img src="https://via.placeholder.com/600x400/111/00d4ff?text=Environment+Design" alt="Art">
-            <div class="label">Environment</div>
+            <img src="http://googleusercontent.com/image_collection/image_retrieval/7744181348930602450_0" alt="Anime Landscape 1">
+            <div class="label">Environment Design</div>
         </div>
+
         <div class="art-card">
-            <img src="https://via.placeholder.com/600x400/111/00d4ff?text=Character+Art" alt="Art">
-            <div class="label">Character</div>
+            <img src="http://googleusercontent.com/image_collection/image_retrieval/7744181348930602450_1" alt="Anime Landscape 2">
+            <div class="label">Atmospheric Study</div>
         </div>
+
         <div class="art-card">
-            <img src="https://via.placeholder.com/600x400/111/00d4ff?text=Prop+Design" alt="Art">
-            <div class="label">Props</div>
-        </div>
-        <div class="art-card">
-            <img src="https://via.placeholder.com/600x400/111/00d4ff?text=Sketchbook" alt="Art">
-            <div class="label">Sketches</div>
+            <img src="http://googleusercontent.com/image_collection/image_retrieval/7744181348930602450_2" alt="Anime Landscape 3">
+            <div class="label">Urban Concept</div>
         </div>
     </section>
 
     <section id="about">
-        <div class="about-box">
-            <h2>About Amal</h2>
-            <p>Amal Suresh is a professional digital artist dedicated to visual storytelling. With a focus on mood, lighting, and composition, he brings fictional worlds to life.</p>
-            <p>Based in Kerala, India. Available for worldwide freelance projects.</p>
+        <div class="about-text">
+            <h2>The Vision</h2>
+            <p>Amal Suresh is a concept artist focused on the intersection of scale and emotion. Based in Kerala, India, he creates digital paintings that serve as blueprints for games and film.</p>
+            <p>Every piece is a study of light, color, and narrative, designed to immerse the viewer in a world that doesn't yet exist.</p>
         </div>
-        <div class="about-box" style="border-left: 1px solid #222; padding-left: 20px;">
-            <h3 style="color:#888">Skills</h3>
-            <ul style="list-style: none; color:#00d4ff; margin-top:10px;">
-                <li>+ Digital Painting</li>
-                <li>+ 3D Blockouts</li>
-                <li>+ Matte Painting</li>
-                <li>+ World Building</li>
+        <div style="border-left: 2px solid var(--accent-blue); padding-left: 30px;">
+            <h3 style="text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px;">Core Skills</h3>
+            <ul style="list-style: none; color: var(--accent-blue); font-weight: bold;">
+                <li>+ Digital Illustration</li>
+                <li>+ Environment Design</li>
+                <li>+ Mood Paintings</li>
+                <li>+ 3D/2D Workflow</li>
             </ul>
         </div>
     </section>
 
     <section id="contact">
-        <h2 style="margin-bottom: 30px;">Let's work together</h2>
-        <a href="mailto:amal@example.com" class="btn">SEND AN EMAIL</a>
+        <h2 style="margin-bottom: 30px; font-size: 2rem;">Available for Freelance</h2>
+        <a href="mailto:amal@example.com" class="contact-btn">Get In Touch</a>
     </section>
 
     <footer>
-        &copy; 2026 AMAL SURESH | CONCEPT ARTIST PORTFOLIO
+        &copy; 2026 AMAL SURESH. ALL ARTWORK PROTECTED BY COPYRIGHT.
     </footer>
+
+    <script>
+        document.querySelectorAll('.art-card img').forEach(image => {
+            image.onclick = () => {
+                const viewer = document.createElement('div');
+                viewer.style.cssText = `
+                    position: fixed; top:0; left:0; width:100%; height:100%;
+                    background: rgba(0,0,0,0.95); z-index:9999;
+                    display:flex; align-items:center; justify-content:center;
+                    cursor: zoom-out; animation: fadeIn 0.3s;
+                `;
+                const fullImg = document.createElement('img');
+                fullImg.src = image.src;
+                fullImg.style.cssText = `max-width:90%; max-height:90%; box-shadow: 0 0 50px rgba(0,0,0,0.5); border: 1px solid #333;`;
+                
+                viewer.appendChild(fullImg);
+                document.body.appendChild(viewer);
+                viewer.onclick = () => viewer.remove();
+            };
+        });
+    </script>
 
 </body>
 </html>
