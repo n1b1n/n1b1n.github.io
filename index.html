@@ -4,146 +4,186 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amal Suresh | Concept Artist</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700;800&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
     <style>
-        /* 1. RESET EVERYTHING */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            /* Palette: Deep Obsidian & Electric Azure */
+            --bg-base: #05070a; 
+            --surface: #0d1117; 
+            --accent-primary: #00d4ff;
+            --accent-glow: rgba(0, 212, 255, 0.2);
+            --text-main: #ffffff;       
+            --text-dim: #94a3b8; 
+            --border: rgba(255, 255, 255, 0.05); 
+            
+            --active-color: var(--accent-primary);
+            --bg-visual: 
+                radial-gradient(circle at 10% 20%, rgba(0, 212, 255, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0, 212, 255, 0.05) 0%, transparent 40%);
+        }
 
-        /* 2. BASE COLORS & BACKGROUND */
+        * { margin: 0; padding: 0; box-sizing: border-box; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        
         body {
-            background-color: #020406 !important; /* Deep Midnight */
-            background-image: radial-gradient(circle at 20% 50%, #0a141d 0%, #020406 100%);
+            background-color: var(--bg-base);
+            background-image: var(--bg-visual);
             background-attachment: fixed;
-            color: #ffffff;
-            font-family: 'Segoe UI', Arial, sans-serif;
-            display: flex; /* This creates the side-by-side look */
-            min-height: 100vh;
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
         }
 
-        /* 3. SIDEBAR (STAYS ON LEFT) */
-        aside {
-            width: 300px;
-            height: 100vh;
-            position: fixed;
-            left: 0;
-            top: 0;
-            padding: 60px 40px;
-            background: rgba(0, 0, 0, 0.9);
-            border-right: 1px solid #1a1a1a;
-            display: flex;
-            flex-direction: column;
-            z-index: 100;
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+        /* --- Navigation --- */
+        header.nav-header { 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 30px 0; border-bottom: 1px solid var(--border);
+            position: sticky; top: 0; background: rgba(5, 7, 10, 0.8); backdrop-filter: blur(10px); z-index: 1000;
+        }
+        .logo { font-size: 14px; font-weight: 800; letter-spacing: 4px; text-decoration: none; color: var(--text-main); text-transform: uppercase; }
+        .logo span { color: var(--accent-primary); } 
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+        .nav-links a:hover { color: var(--accent-primary); }
+
+        /* --- Hero Section --- */
+        .hero { text-align: center; padding: 8rem 0; }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 8vw, 5.5rem); line-height: 1; margin-bottom: 20px; font-style: italic; }
+        .hero h1 span { color: var(--accent-primary); text-shadow: 0 0 30px var(--accent-glow); }
+        .hero-tagline { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; letter-spacing: 5px; text-transform: uppercase; color: var(--text-dim); font-weight: 300; }
+
+        /* --- Project Grid (The Gallery) --- */
+        .section-title { font-size: 1rem; font-weight: 800; margin: 6rem 0 3rem; text-transform: uppercase; letter-spacing: 4px; color: var(--accent-primary); text-align: center; }
+        
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 40px; }
+        
+        .art-card { 
+            background-color: var(--surface); border: 1px solid var(--border); border-radius: 4px; 
+            overflow: hidden; position: relative; cursor: zoom-in;
+        }
+        
+        .art-card:hover { 
+            border-color: var(--accent-primary);
+            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.5), 0 18px 36px -18px var(--accent-glow);
+            transform: translateY(-10px);
         }
 
-        .name { color: #00d4ff; font-weight: bold; letter-spacing: 3px; margin-bottom: 5px; }
-        .title { font-size: 32px; margin-bottom: 40px; font-weight: 300; font-style: italic; }
+        .art-card img { width: 100%; height: 500px; object-fit: cover; opacity: 0.8; transition: 1s ease; }
+        .art-card:hover img { opacity: 1; transform: scale(1.05); }
 
-        nav ul { list-style: none; }
-        nav ul li { margin-bottom: 20px; }
-        nav ul li a { color: #888; text-decoration: none; transition: 0.3s; }
-        nav ul li a:hover { color: #00d4ff; padding-left: 10px; }
-
-        /* 4. MAIN CONTENT (ART ON RIGHT) */
-        main {
-            margin-left: 300px; /* Must match sidebar width */
-            width: calc(100% - 300px);
-            padding: 10px;
+        .card-overlay {
+            position: absolute; bottom: 0; left: 0; width: 100%; padding: 40px;
+            background: linear-gradient(transparent, rgba(5, 7, 10, 0.95));
+            opacity: 0; transform: translateY(20px);
         }
+        .art-card:hover .card-overlay { opacity: 1; transform: translateY(0); }
+        .card-overlay h3 { font-family: 'Playfair Display', serif; font-size: 24px; font-style: italic; }
 
-        .art-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-            gap: 10px;
+        /* --- Operational Matrix (Skills) --- */
+        .matrix-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 4rem; }
+        .trait-card { 
+            background-color: var(--surface); border: 1px solid var(--border); padding: 3rem; 
+            border-left: 4px solid var(--accent-primary);
         }
+        .trait-card h4 { text-transform: uppercase; letter-spacing: 2px; font-size: 12px; margin-bottom: 15px; color: var(--accent-primary); }
+        .trait-card p { color: var(--text-dim); font-size: 1.1rem; line-height: 1.7; }
 
-        .art-card {
-            position: relative;
-            height: 85vh; /* Very tall like your example */
-            background: #111;
-            overflow: hidden;
-            border: 1px solid #222;
-        }
+        /* --- Footer --- */
+        footer { text-align: center; padding: 6rem 0; border-top: 1px solid var(--border); margin-top: 6rem; }
+        .contact-link { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 4vw, 3rem); color: #fff; text-decoration: none; font-style: italic; border-bottom: 2px solid var(--accent-primary); padding-bottom: 10px; transition: 0.3s; }
+        .contact-link:hover { color: var(--accent-primary); border-color: #fff; }
 
-        .art-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: 1s;
-        }
-
-        .art-card:hover img {
-            transform: scale(1.05);
-        }
-
-        /* 5. OVERLAY TEXT */
-        .overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 40px;
-            background: linear-gradient(transparent, rgba(0,0,0,0.9));
-        }
-
-        .view-btn {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 10px 25px;
-            background: #00d4ff;
-            color: #000;
-            font-weight: bold;
-            font-size: 12px;
-            text-transform: uppercase;
-        }
-
-        /* MOBILE FIX */
-        @media (max-width: 800px) {
-            body { flex-direction: column; }
-            aside { position: relative; width: 100%; height: auto; }
-            main { margin-left: 0; width: 100%; }
+        @media (max-width: 768px) {
+            .gallery-grid { grid-template-columns: 1fr; }
+            .hero { padding: 4rem 0; }
         }
     </style>
 </head>
 <body>
 
-    <aside>
-        <p class="name">AMAL SURESH</p>
-        <h1 class="title">Portfolio</h1>
-        <nav>
-            <ul>
-                <li><a href="#">Work</a></li>
-                <li><a href="#">Artstation</a></li>
-                <li><a href="#">Instagram</a></li>
-                <li><a href="#">About</a></li>
-            </ul>
-        </nav>
-    </aside>
+    <div class="container">
+        <header class="nav-header">
+            <a href="#" class="logo">Amal <span>Suresh</span></a>
+            <nav class="nav-links">
+                <a href="#work">Work</a>
+                <a href="#matrix">Process</a>
+                <a href="mailto:amal@example.com">Contact</a>
+            </nav>
+        </header>
 
-    <main>
-        <div class="art-grid">
-            <div class="art-card">
-                <img src="art1.jpg" alt="Work 1">
-                <div class="overlay">
-                    <h3>Project One</h3>
-                    <div class="view-btn">View</div>
-                </div>
-            </div>
-            <div class="art-card">
-                <img src="art2.jpg" alt="Work 2">
-                <div class="overlay">
-                    <h3>Project Two</h3>
-                    <div class="view-btn">View</div>
-                </div>
-            </div>
-            <div class="art-card">
-                <img src="art3.jpg" alt="Work 3">
-                <div class="overlay">
-                    <h3>Project Three</h3>
-                    <div class="view-btn">View</div>
-                </div>
-            </div>
-        </div>
-    </main>
+        <main>
+            <section class="hero">
+                <p class="hero-tagline">Visualizing Imaginary Worlds</p>
+                <h1>Concept <span>Artist</span></h1>
+                <p style="color: var(--text-dim); max-width: 600px; margin: 20px auto 0;">Specializing in environment design, cinematic lighting, and digital world-building for games and film.</p>
+            </section>
 
+            <section id="work">
+                <h2 class="section-title">Visual Archives</h2>
+                <div class="gallery-grid">
+                    <div class="art-card">
+                        <img src="art1.jpg" alt="Waterfall Concept">
+                        <div class="card-overlay">
+                            <h3>The Waterfall Sanctuary</h3>
+                            <p style="font-size: 12px; color: var(--accent-primary); text-transform: uppercase; letter-spacing: 2px;">Environment Design</p>
+                        </div>
+                    </div>
+                    <div class="art-card">
+                        <img src="art2.jpg" alt="Galaxy Tree">
+                        <div class="card-overlay">
+                            <h3>Celestial Roots</h3>
+                            <p style="font-size: 12px; color: var(--accent-primary); text-transform: uppercase; letter-spacing: 2px;">Atmospheric Study</p>
+                        </div>
+                    </div>
+                    <div class="art-card">
+                        <img src="art3.jpg" alt="Anime City">
+                        <div class="card-overlay">
+                            <h3>Neon District 09</h3>
+                            <p style="font-size: 12px; color: var(--accent-primary); text-transform: uppercase; letter-spacing: 2px;">Urban Illustration</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="matrix">
+                <h2 class="section-title">The Creative Matrix</h2>
+                <div class="matrix-grid">
+                    <div class="trait-card">
+                        <h4>Narrative Design</h4>
+                        <p>Focusing on the "why" behind every scene, ensuring the environment tells a story before a character ever speaks.</p>
+                    </div>
+                    <div class="trait-card">
+                        <h4>Technical Arsenal</h4>
+                        <p>Expertise in Photoshop, Blender block-outs, and cinematic lighting workflows to bridge the gap between sketch and reality.</p>
+                    </div>
+                    <div class="trait-card">
+                        <h4>Visual Research</h4>
+                        <p>Dedicated to deep observation of natural phenomena to ground even the most fantastical worlds in believable physics.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p style="text-transform: uppercase; letter-spacing: 5px; color: var(--text-dim); margin-bottom: 30px; font-size: 12px;">Start a project</p>
+            <a href="mailto:amal@example.com" class="contact-link">hello@amalsuresh.art</a>
+            <div style="margin-top: 60px; opacity: 0.3; font-size: 10px; letter-spacing: 2px;">© 2026 AMAL SURESH | CONCEPT ART PORTFOLIO</div>
+        </footer>
+    </div>
+
+    <script>
+        // Smooth hover script logic (can be expanded for parallax if needed)
+        document.querySelectorAll('.art-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+    </script>
 </body>
 </html>
