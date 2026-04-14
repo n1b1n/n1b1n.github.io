@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amal Suresh | Concept Artist</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700;800&family=Playfair+Display:ital,wght@1,700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-base: #05070a; 
@@ -60,64 +60,57 @@
         .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 8vw, 5.5rem); line-height: 1; margin-bottom: 20px; font-style: italic; }
         .hero h1 span { color: var(--accent-primary); text-shadow: 0 0 30px var(--accent-glow); }
 
-        /* --- About Me Section (Updated) --- */
-        .about-section { 
-            padding: 6rem 0; 
-            border-bottom: 1px solid var(--border); 
-            text-align: center; /* Centered Alignment */
-        }
-        .about-content { max-width: 900px; margin: 0 auto; }
+        /* --- About Me Section (Updated Alignment & Heading) --- */
+        .about-section { padding: 6rem 0; border-bottom: 1px solid var(--border); background: rgba(255, 255, 255, 0.01); }
+        .about-content { max-width: 850px; margin: 0 auto; text-align: left; }
+        
         .about-text h2 { 
-            font-family: 'Playfair Display', serif; 
-            font-style: italic; 
-            font-size: 38px; 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            font-weight: 800; 
+            font-size: 42px; 
+            letter-spacing: -1px;
             margin-bottom: 30px; 
-            color: var(--accent-primary); 
-        }
-        .about-text p { 
-            color: #ffffff; /* Changed to White */
-            font-family: 'Montserrat', sans-serif; /* Changed Font */
-            line-height: 2; 
-            font-size: 1.1rem;
-            margin-bottom: 25px; 
-            font-weight: 300;
-            letter-spacing: 0.5px;
+            color: #ffffff; /* White Heading */
         }
         
-        .experience-highlight { 
-            margin-top: 40px; 
-            padding: 20px;
-            background: var(--surface);
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            display: inline-block;
+        .about-description { margin-bottom: 40px; }
+        .about-description p { 
+            color: var(--text-dim); 
+            font-size: 18px;
+            line-height: 1.8; 
+            margin-bottom: 24px; 
         }
-        .experience-highlight h4 { 
+        
+        .experience-box { 
+            background: var(--surface); 
+            padding: 35px; 
+            border-radius: 12px; 
+            border: 1px solid var(--border);
+            position: relative;
+        }
+        
+        .experience-item { padding-left: 25px; border-left: 3px solid var(--accent-primary); }
+        .experience-item h4 { 
             font-size: 12px; 
             color: var(--accent-primary); 
             text-transform: uppercase; 
             letter-spacing: 3px; 
             margin-bottom: 10px; 
         }
-        .experience-highlight p { 
-            color: #ffffff; 
-            font-size: 14px; 
-            margin-bottom: 0;
-            font-weight: 400;
-        }
+        .experience-item p { font-size: 16px; color: #fff; line-height: 1.6; }
 
-        /* --- Technical Arsenal (Positioned Below About) --- */
-        .arsenal-section { padding: 5rem 0; text-align: center; background: rgba(255,255,255,0.01); }
+        /* --- Technical Arsenal --- */
+        .arsenal-section { padding: 6rem 0; text-align: center; }
         .tool-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 40px; }
         .tool-card { 
             background: var(--surface); border: 1px solid var(--border); padding: 30px; 
-            text-align: center; border-radius: 12px; width: 180px; font-size: 11px; font-weight: 700; text-transform: uppercase;
+            text-align: center; border-radius: 12px; width: 190px; font-size: 11px; font-weight: 700; text-transform: uppercase;
         }
         .tool-card i { font-size: 32px; color: var(--accent-primary); margin-bottom: 15px; display: block; }
         .tool-card:hover { border-color: var(--accent-primary); transform: translateY(-8px); box-shadow: 0 15px 30px rgba(0,0,0,0.4); }
 
         /* --- Gallery Section --- */
-        .filter-controls { display: flex; justify-content: center; gap: 15px; margin: 4rem 0 3rem; flex-wrap: wrap; }
+        .filter-controls { display: flex; justify-content: center; gap: 15px; margin: 2rem 0 4rem; flex-wrap: wrap; }
         .filter-btn {
             background: transparent; border: 1px solid var(--border); color: var(--text-dim);
             padding: 10px 25px; cursor: pointer; border-radius: 30px; font-size: 12px;
@@ -143,7 +136,10 @@
         .contact-link { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 4vw, 2.5rem); color: #fff; text-decoration: none; font-style: italic; border-bottom: 2px solid var(--accent-primary); transition: 0.3s; }
         .contact-link:hover { color: var(--accent-primary); }
 
-        @media (max-width: 768px) { .gallery-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) { 
+            .gallery-grid { grid-template-columns: 1fr; }
+            .about-text h2 { font-size: 32px; }
+        }
     </style>
 </head>
 <body>
@@ -170,12 +166,16 @@
                 <div class="about-content">
                     <div class="about-text">
                         <h2>About Me</h2>
-                        <p>I am an ardent and visionary artist. As a creative thinker, I always work to the highest standards; delivering the highest level of professionalism and dedication to long-term, strategic improvements of my skillset.</p>
-                        <p>I started my career as a junior 2D gaming concept artist 5 years ago. I've been working on team projects under tight deadlines and have worked with top gaming companies like GSN, ZYNGA, STELLARPLAY, etc.</p>
+                        <div class="about-description">
+                            <p>I am an ardent and visionary artist and creative thinker who always works to the highest standards, delivering top-level professionalism and dedication.</p>
+                            <p>Started my career 5 years ago as a junior 2D gaming concept artist, I have extensive experience working on team projects under tight deadlines for global industry leaders.</p>
+                        </div>
                         
-                        <div class="experience-highlight">
-                            <h4>Industry Collaboration</h4>
-                            <p>GSN • ZYNGA • STELLARPLAY • AND MORE</p>
+                        <div class="experience-box">
+                            <div class="experience-item">
+                                <h4>Experience Highlights</h4>
+                                <p>Successfully collaborated with top gaming companies including GSN, Zynga, and Stellarplay.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
