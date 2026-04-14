@@ -17,7 +17,8 @@
             --border: rgba(255, 255, 255, 0.08); 
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); cursor: none; }
+        /* Essential: cursor: none hides the default mouse so the brush works */
+        * { margin: 0; padding: 0; box-sizing: border-box; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); cursor: none !important; }
         
         body {
             background-color: var(--bg-base);
@@ -27,22 +28,22 @@
             scroll-behavior: smooth;
         }
 
-        /* --- CUSTOM PAINT BRUSH CURSOR --- */
+        /* --- FIXED UPWARD BRUSH CURSOR --- */
         #cursor-brush {
             position: fixed;
             top: 0;
             left: 0;
-            font-size: 26px; /* Slightly larger for visibility */
+            font-size: 28px; 
             color: var(--accent-primary);
             pointer-events: none;
             z-index: 10001;
             
-            /* --- UPDATED UPWARD STYLE --- */
-            /* We translate 0, -100% to lift the icon above the click point,
-               and rotate 35deg to point the bristles upward and right. */
-            transform: translate(0%, -100%) rotate(35deg); 
+            /* These settings ensure the tip of the brush is the actual click point */
+            transform-origin: bottom left;
+            transform: translate(0, -100%) rotate(10deg); 
             
             text-shadow: 0 0 15px var(--accent-glow);
+            transition: none; /* Critical: brush must move instantly with mouse */
         }
 
         #cursor-glow {
@@ -56,6 +57,7 @@
             pointer-events: none;
             transform: translate(-50%, -50%);
             z-index: 1;
+            transition: none; /* Critical: glow must move instantly */
         }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 2; }
@@ -87,34 +89,17 @@
         /* --- Hero Section --- */
         .hero { text-align: center; padding: 8rem 0 4rem; }
         .hero p.tagline { letter-spacing: 5px; text-transform: uppercase; font-size: 11px; color: var(--text-dim); margin-bottom: 10px; }
-        
-        .hero h1 { 
-            font-family: 'Limelight', cursive; 
-            font-size: clamp(3.5rem, 10vw, 6rem); 
-            line-height: 1.1; 
-            margin-bottom: 20px; 
-            letter-spacing: 2px;
-        }
+        .hero h1 { font-family: 'Limelight', cursive; font-size: clamp(3.5rem, 10vw, 6rem); line-height: 1.1; margin-bottom: 20px; letter-spacing: 2px; }
         .hero h1 span { color: var(--accent-primary); text-shadow: 0 0 30px var(--accent-glow); }
         .hero p.desc { color: var(--text-dim); max-width: 600px; margin: 0 auto; font-size: 18px; }
 
         /* --- About Me Section --- */
         .about-section { padding: 6rem 0; border-bottom: 1px solid var(--border); }
         .about-content { max-width: 850px; margin: 0 auto; text-align: left; }
-        .about-text h2 { 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            font-weight: 800; 
-            font-size: 42px; 
-            letter-spacing: -1px;
-            margin-bottom: 30px; 
-            color: #ffffff; 
-        }
+        .about-text h2 { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 42px; letter-spacing: -1px; margin-bottom: 30px; color: #ffffff; }
         .about-description p { color: var(--text-dim); font-size: 18px; line-height: 1.8; margin-bottom: 24px; }
         
-        .experience-box { 
-            background: var(--surface); padding: 35px; border-radius: 12px; border: 1px solid var(--border);
-            position: relative; overflow: hidden;
-        }
+        .experience-box { background: var(--surface); padding: 35px; border-radius: 12px; border: 1px solid var(--border); position: relative; overflow: hidden; }
         .experience-box:hover { border-color: var(--accent-primary); box-shadow: 0 0 20px var(--accent-glow); }
         .experience-item { padding-left: 25px; border-left: 3px solid var(--accent-primary); }
         .experience-item h4 { font-size: 12px; color: var(--accent-primary); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 10px; }
@@ -123,38 +108,28 @@
         /* --- Technical Arsenal --- */
         .arsenal-section { padding: 6rem 0; text-align: center; }
         .tool-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 40px; }
-        .tool-card { 
-            background: var(--surface); border: 1px solid var(--border); padding: 25px; 
-            text-align: center; border-radius: 12px; width: 170px; transition: 0.3s;
-        }
+        .tool-card { background: var(--surface); border: 1px solid var(--border); padding: 25px; text-align: center; border-radius: 12px; width: 170px; transition: 0.3s; }
         .tool-card img { width: 50px; height: 50px; margin-bottom: 15px; object-fit: contain; }
         .tool-card span { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--text-dim); }
         .tool-card:hover { border-color: var(--accent-primary); box-shadow: 0 0 15px var(--accent-glow); }
 
         /* --- Gallery Section --- */
         .filter-controls { display: flex; justify-content: center; gap: 15px; margin: 2rem 0 4rem; flex-wrap: wrap; }
-        .filter-btn {
-            background: transparent; border: 1px solid var(--border); color: var(--text-dim);
-            padding: 10px 25px; cursor: pointer; border-radius: 30px; font-size: 12px;
-            font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
-        }
+        .filter-btn { background: transparent; border: 1px solid var(--border); color: var(--text-dim); padding: 10px 25px; cursor: none !important; border-radius: 30px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
         .filter-btn.active, .filter-btn:hover { border-color: var(--accent-primary); color: var(--accent-primary); }
 
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
         .art-card { background-color: var(--surface); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; position: relative; }
         .art-card img { width: 100%; height: 450px; object-fit: cover; opacity: 0.7; filter: saturate(0.5); }
-        
         .art-card:hover { transform: translateY(-10px); border-color: var(--accent-primary); box-shadow: 0 0 40px var(--accent-glow); }
         .art-card:hover img { opacity: 1; filter: saturate(1); transform: scale(1.05); }
 
         footer { text-align: center; padding: 6rem 0; border-top: 1px solid var(--border); margin-top: 6rem; }
         .contact-link { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 4vw, 2.5rem); color: #fff; text-decoration: none; font-style: italic; border-bottom: 2px solid var(--accent-primary); transition: 0.3s; }
-        .contact-link:hover { color: var(--accent-primary); text-shadow: 0 0 15px var(--accent-primary); }
 
         @media (max-width: 768px) { 
-            * { cursor: auto; }
+            * { cursor: auto !important; }
             #cursor-glow, #cursor-brush { display: none; }
-            .about-text h2 { font-size: 32px; }
         }
     </style>
 </head>
@@ -167,7 +142,7 @@
         <header class="nav-header">
             <a href="#" class="logo">Amal <span>Suresh</span></a>
             <nav class="nav-links">
-                <a href="https://www.linkedin.com/in/amal-suresh-1996aa369?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                <a href="https://www.linkedin.com/in/amal-suresh-1996aa369" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
                 <a href="https://www.artstation.com/amalcs" target="_blank"><i class="fa-brands fa-artstation"></i> ArtStation</a>
                 <a href="mailto:amalsuresh734@gmail.com">Contact</a>
                 <a href="resume.pdf" download class="resume-btn"><i class="fa-solid fa-download"></i> Resume</a>
@@ -202,18 +177,9 @@
             <section class="arsenal-section">
                 <h2 style="font-size: 12px; text-transform: uppercase; letter-spacing: 4px; color: var(--accent-primary);">Technical Arsenal</h2>
                 <div class="tool-grid">
-                    <div class="tool-card">
-                        <img src="pngwing.com(1).png" alt="Photoshop">
-                        <span>Photoshop</span>
-                    </div>
-                    <div class="tool-card">
-                        <img src="pngwing.com.png" alt="Illustrator">
-                        <span>Illustrator</span>
-                    </div>
-                    <div class="tool-card">
-                        <i class="fa-solid fa-palette" style="font-size: 40px; color: var(--accent-primary); margin-bottom: 15px; display: block;"></i>
-                        <span>Digital Painting</span>
-                    </div>
+                    <div class="tool-card"><img src="pngwing.com(1).png" alt="Photoshop"><span>Photoshop</span></div>
+                    <div class="tool-card"><img src="pngwing.com.png" alt="Illustrator"><span>Illustrator</span></div>
+                    <div class="tool-card"><i class="fa-solid fa-palette" style="font-size: 40px; color: var(--accent-primary); margin-bottom: 15px; display: block;"></i><span>Digital Painting</span></div>
                 </div>
             </section>
 
@@ -227,9 +193,9 @@
                 </div>
 
                 <div class="gallery-grid">
-                    <div class="art-card bg"><img src="art1.jpg" alt="Background Art"></div>
-                    <div class="art-card character"><img src="art2.jpg" alt="Character Art"></div>
-                    <div class="art-card icons"><img src="art3.jpg" alt="Icon Asset"></div>
+                    <div class="art-card bg"><img src="art1.jpg" alt="Background"></div>
+                    <div class="art-card character"><img src="art2.jpg" alt="Character"></div>
+                    <div class="art-card icons"><img src="art3.jpg" alt="Icon"></div>
                     <div class="art-card sketches"><img src="art4.jpg" alt="Sketch"></div>
                 </div>
             </section>
@@ -246,11 +212,14 @@
         const glow = document.getElementById('cursor-glow');
         const brush = document.getElementById('cursor-brush');
 
+        // requestAnimationFrame makes cursor movement butter-smooth
         document.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
-            brush.style.left = e.clientX + 'px';
-            brush.style.top = e.clientY + 'px';
+            window.requestAnimationFrame(() => {
+                glow.style.left = e.clientX + 'px';
+                glow.style.top = e.clientY + 'px';
+                brush.style.left = e.clientX + 'px';
+                brush.style.top = e.clientY + 'px';
+            });
         });
 
         function filterSelection(c) {
