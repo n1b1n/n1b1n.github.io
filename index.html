@@ -58,36 +58,32 @@
         .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 8vw, 5.5rem); line-height: 1; margin-bottom: 20px; font-style: italic; }
         .hero h1 span { color: var(--accent-primary); text-shadow: 0 0 30px var(--accent-glow); }
 
-        /* --- Updated About Me Section --- */
+        /* --- About Me Section --- */
         .about-section { padding: 4rem 0; border-bottom: 1px solid var(--border); }
-        .about-content { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+        .about-content { max-width: 800px; margin: 0 auto; text-align: center; }
         .about-text h2 { font-family: 'Playfair Display', serif; font-style: italic; font-size: 32px; margin-bottom: 20px; color: var(--accent-primary); }
-        .about-text p { color: var(--text-dim); line-height: 1.8; margin-bottom: 20px; text-align: justify; }
+        .about-text p { color: var(--text-dim); line-height: 1.8; margin-bottom: 20px; }
         
-        .experience-list { margin-top: 20px; }
-        .experience-item { margin-bottom: 15px; padding-left: 15px; border-left: 2px solid var(--accent-primary); }
-        .experience-item h4 { font-size: 14px; color: #fff; text-transform: uppercase; letter-spacing: 1px; }
-        .experience-item p { margin-bottom: 0; font-size: 13px; }
+        .experience-list { margin-top: 30px; display: inline-block; text-align: left; }
+        .experience-item { padding-left: 20px; border-left: 2px solid var(--accent-primary); }
+        .experience-item h4 { font-size: 14px; color: #fff; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 5px; }
+        .experience-item p { font-size: 14px; color: var(--text-dim); }
 
-        .education-box h3 { font-size: 12px; text-transform: uppercase; letter-spacing: 3px; color: var(--accent-primary); margin-bottom: 20px; }
-        .edu-item { background: var(--surface); padding: 20px; border-radius: 8px; margin-bottom: 15px; border: 1px solid var(--border); }
-        .edu-item h4 { font-size: 15px; margin-bottom: 5px; }
-        .edu-item p { font-size: 13px; color: var(--text-dim); }
-
-        /* --- Updated Tool Arsenal --- */
-        .arsenal-section { padding: 4rem 0; text-align: center; }
-        .tool-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 20px; margin-top: 30px; }
+        /* --- Technical Arsenal --- */
+        .arsenal-section { padding: 5rem 0; text-align: center; }
+        .tool-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 40px; }
         .tool-card { 
-            background: var(--surface); border: 1px solid var(--border); padding: 25px; 
-            text-align: center; border-radius: 12px; font-size: 11px; font-weight: 700; text-transform: uppercase;
+            background: var(--surface); border: 1px solid var(--border); padding: 30px; 
+            text-align: center; border-radius: 12px; width: 180px; font-size: 11px; font-weight: 700; text-transform: uppercase;
         }
-        .tool-card i { font-size: 28px; color: var(--accent-primary); margin-bottom: 12px; display: block; }
-        .tool-card:hover { border-color: var(--accent-primary); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+        .tool-card i { font-size: 32px; color: var(--accent-primary); margin-bottom: 15px; display: block; }
+        .tool-card:hover { border-color: var(--accent-primary); transform: translateY(-8px); box-shadow: 0 15px 30px rgba(0,0,0,0.4); }
 
+        /* --- Gallery Section --- */
         .filter-controls { display: flex; justify-content: center; gap: 15px; margin: 4rem 0 3rem; flex-wrap: wrap; }
         .filter-btn {
             background: transparent; border: 1px solid var(--border); color: var(--text-dim);
-            padding: 10px 20px; cursor: pointer; border-radius: 30px; font-size: 12px;
+            padding: 10px 25px; cursor: pointer; border-radius: 30px; font-size: 12px;
             font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
         }
         .filter-btn.active, .filter-btn:hover { border-color: var(--accent-primary); color: var(--accent-primary); }
@@ -95,14 +91,14 @@
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
         .art-card { background-color: var(--surface); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; position: relative; }
         .art-card.hidden { display: none; }
-        .art-card img { width: 100%; height: 400px; object-fit: cover; opacity: 0.8; }
-        .art-card:hover { transform: translateY(-10px); border-color: var(--accent-primary); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+        .art-card img { width: 100%; height: 450px; object-fit: cover; opacity: 0.8; }
+        .art-card:hover { transform: translateY(-10px); border-color: var(--accent-primary); box-shadow: 0 25px 50px rgba(0,0,0,0.6); }
         .art-card:hover img { opacity: 1; transform: scale(1.05); }
 
         .card-overlay {
-            position: absolute; bottom: 0; left: 0; width: 100%; padding: 30px;
+            position: absolute; bottom: 0; left: 0; width: 100%; padding: 40px;
             background: linear-gradient(transparent, rgba(5, 7, 10, 0.95));
-            opacity: 0; transform: translateY(10px);
+            opacity: 0; transform: translateY(15px);
         }
         .art-card:hover .card-overlay { opacity: 1; transform: translateY(0); }
 
@@ -110,7 +106,7 @@
         .contact-link { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 4vw, 2.5rem); color: #fff; text-decoration: none; font-style: italic; border-bottom: 2px solid var(--accent-primary); transition: 0.3s; }
         .contact-link:hover { color: var(--accent-primary); }
 
-        @media (max-width: 900px) { .about-content { grid-template-columns: 1fr; } .gallery-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) { .gallery-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -130,32 +126,21 @@
             <section class="hero">
                 <p style="letter-spacing: 5px; text-transform: uppercase; font-size: 11px; color: var(--text-dim); margin-bottom: 10px;">Visualizing Imaginary Worlds</p>
                 <h1>Amal <span>Suresh</span></h1>
-                <p style="color: var(--text-dim); max-width: 600px; margin: 0 auto;">2D Gaming Concept Artist & Creative Thinker.</p>
+                <p style="color: var(--text-dim); max-width: 600px; margin: 0 auto;">2D Gaming Concept Artist & Visionary Thinker.</p>
             </section>
 
             <section id="about" class="about-section">
                 <div class="about-content">
                     <div class="about-text">
                         <h2>About Me</h2>
-                        <p>I am an ardent and visionary artist and creative thinker who always works to the highest standards, delivering top-level professionalism and dedication. I specialize in world-building through cinematic lighting and vast-scale digital environments.</p>
+                        <p>I am an ardent and visionary artist and creative thinker who always works to the highest standards, delivering top-level professionalism and dedication. I specialize in world-building through cinematic lighting and immersive digital environments.</p>
                         <p>Started my career 5 years ago as a junior 2D gaming concept artist. I have extensive experience working on team projects under tight deadlines for industry leaders.</p>
                         
                         <div class="experience-list">
                             <div class="experience-item">
                                 <h4>Experience Highlights</h4>
-                                <p>Worked with top gaming companies including GSN, Zynga, and Stellarplay.</p>
+                                <p>Successfully collaborated with top gaming companies like GSN, Zynga, and Stellarplay.</p>
                             </div>
-                        </div>
-                    </div>
-                    <div class="education-box">
-                        <h3>Education</h3>
-                        <div class="edu-item">
-                            <h4>UG (BBA)</h4>
-                            <p>JPM Arts and Science College (2016-2019)</p>
-                        </div>
-                        <div class="edu-item">
-                            <h4>Secondary Education</h4>
-                            <p>St. Thomas HSS</p>
                         </div>
                     </div>
                 </div>
@@ -166,9 +151,7 @@
                 <div class="tool-grid">
                     <div class="tool-card"><i class="fa-solid fa-paintbrush"></i>Adobe Photoshop</div>
                     <div class="tool-card"><i class="fa-solid fa-bezier-curve"></i>Adobe Illustrator</div>
-                    <div class="tool-card"><i class="fa-solid fa-cube"></i>Blender 3D</div>
                     <div class="tool-card"><i class="fa-solid fa-palette"></i>Digital Painting</div>
-                    <div class="tool-card"><i class="fa-solid fa-layer-group"></i>UI/UX Design</div>
                 </div>
             </section>
 
