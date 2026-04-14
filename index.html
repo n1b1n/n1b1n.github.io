@@ -11,13 +11,12 @@
             --bg-base: #05070a; 
             --surface: #0d1117; 
             --accent-primary: #00d4ff;
-            --accent-glow: rgba(0, 212, 255, 0.2);
+            --accent-glow: rgba(0, 212, 255, 0.3);
             --text-main: #ffffff;       
             --text-dim: #94a3b8; 
             --border: rgba(255, 255, 255, 0.08); 
         }
 
-        /* Essential: cursor: none hides the default mouse so the brush works */
         * { margin: 0; padding: 0; box-sizing: border-box; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); cursor: none !important; }
         
         body {
@@ -28,7 +27,21 @@
             scroll-behavior: smooth;
         }
 
-        /* --- FIXED UPWARD BRUSH CURSOR --- */
+        /* --- RESTORED MOUSE GLOW SPOTLIGHT --- */
+        #cursor-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.12) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            transition: none; /* Must be instant */
+        }
+
         #cursor-brush {
             position: fixed;
             top: 0;
@@ -37,27 +50,10 @@
             color: var(--accent-primary);
             pointer-events: none;
             z-index: 10001;
-            
-            /* These settings ensure the tip of the brush is the actual click point */
             transform-origin: bottom left;
             transform: translate(0, -100%) rotate(10deg); 
-            
             text-shadow: 0 0 15px var(--accent-glow);
-            transition: none; /* Critical: brush must move instantly with mouse */
-        }
-
-        #cursor-glow {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 350px;
-            height: 350px;
-            background: radial-gradient(circle, rgba(0, 212, 255, 0.07) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            z-index: 1;
-            transition: none; /* Critical: glow must move instantly */
+            transition: none; 
         }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 2; }
@@ -73,8 +69,7 @@
         
         .nav-links { display: flex; gap: 20px; align-items: center; }
         .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
-        .nav-links a i { font-size: 16px; }
-        .nav-links a:hover { color: var(--accent-primary); }
+        .nav-links a:hover { color: var(--accent-primary); text-shadow: 0 0 10px var(--accent-glow); }
         
         .resume-btn {
             background: rgba(0, 212, 255, 0.1);
@@ -82,11 +77,10 @@
             color: var(--accent-primary) !important;
             padding: 8px 15px;
             border-radius: 4px;
-            margin-left: 10px;
         }
-        .resume-btn:hover { background: var(--accent-primary); color: #000 !important; }
+        .resume-btn:hover { background: var(--accent-primary); color: #000 !important; box-shadow: 0 0 20px var(--accent-glow); }
 
-        /* --- Hero Section --- */
+        /* --- Hero --- */
         .hero { text-align: center; padding: 8rem 0 4rem; }
         .hero p.tagline { letter-spacing: 5px; text-transform: uppercase; font-size: 11px; color: var(--text-dim); margin-bottom: 10px; }
         .hero h1 { font-family: 'Limelight', cursive; font-size: clamp(3.5rem, 10vw, 6rem); line-height: 1.1; margin-bottom: 20px; letter-spacing: 2px; }
@@ -96,11 +90,15 @@
         /* --- About Me Section --- */
         .about-section { padding: 6rem 0; border-bottom: 1px solid var(--border); }
         .about-content { max-width: 850px; margin: 0 auto; text-align: left; }
-        .about-text h2 { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 42px; letter-spacing: -1px; margin-bottom: 30px; color: #ffffff; }
+        .about-text h2 { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 42px; margin-bottom: 30px; color: #ffffff; }
         .about-description p { color: var(--text-dim); font-size: 18px; line-height: 1.8; margin-bottom: 24px; }
         
-        .experience-box { background: var(--surface); padding: 35px; border-radius: 12px; border: 1px solid var(--border); position: relative; overflow: hidden; }
-        .experience-box:hover { border-color: var(--accent-primary); box-shadow: 0 0 20px var(--accent-glow); }
+        .experience-box { 
+            background: var(--surface); padding: 35px; border-radius: 12px; border: 1px solid var(--border);
+            position: relative; overflow: hidden;
+        }
+        /* Spotlight interaction for the box */
+        .experience-box:hover { border-color: var(--accent-primary); box-shadow: 0 0 30px rgba(0, 212, 255, 0.15); }
         .experience-item { padding-left: 25px; border-left: 3px solid var(--accent-primary); }
         .experience-item h4 { font-size: 12px; color: var(--accent-primary); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 10px; }
         .experience-item p { font-size: 16px; color: #fff; line-height: 1.6; }
@@ -108,24 +106,31 @@
         /* --- Technical Arsenal --- */
         .arsenal-section { padding: 6rem 0; text-align: center; }
         .tool-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 40px; }
-        .tool-card { background: var(--surface); border: 1px solid var(--border); padding: 25px; text-align: center; border-radius: 12px; width: 170px; transition: 0.3s; }
+        .tool-card { 
+            background: var(--surface); border: 1px solid var(--border); padding: 25px; 
+            text-align: center; border-radius: 12px; width: 170px; transition: 0.3s;
+        }
         .tool-card img { width: 50px; height: 50px; margin-bottom: 15px; object-fit: contain; }
         .tool-card span { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--text-dim); }
-        .tool-card:hover { border-color: var(--accent-primary); box-shadow: 0 0 15px var(--accent-glow); }
+        .tool-card:hover { border-color: var(--accent-primary); box-shadow: 0 0 20px var(--accent-glow); transform: translateY(-5px); }
 
         /* --- Gallery Section --- */
         .filter-controls { display: flex; justify-content: center; gap: 15px; margin: 2rem 0 4rem; flex-wrap: wrap; }
         .filter-btn { background: transparent; border: 1px solid var(--border); color: var(--text-dim); padding: 10px 25px; cursor: none !important; border-radius: 30px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
-        .filter-btn.active, .filter-btn:hover { border-color: var(--accent-primary); color: var(--accent-primary); }
+        .filter-btn.active, .filter-btn:hover { border-color: var(--accent-primary); color: var(--accent-primary); box-shadow: 0 0 15px var(--accent-glow); }
 
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
         .art-card { background-color: var(--surface); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; position: relative; }
         .art-card img { width: 100%; height: 450px; object-fit: cover; opacity: 0.7; filter: saturate(0.5); }
+        
+        /* RESTORED SUBJECT GLOW */
         .art-card:hover { transform: translateY(-10px); border-color: var(--accent-primary); box-shadow: 0 0 40px var(--accent-glow); }
         .art-card:hover img { opacity: 1; filter: saturate(1); transform: scale(1.05); }
 
         footer { text-align: center; padding: 6rem 0; border-top: 1px solid var(--border); margin-top: 6rem; }
-        .contact-link { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 4vw, 2.5rem); color: #fff; text-decoration: none; font-style: italic; border-bottom: 2px solid var(--accent-primary); transition: 0.3s; }
+        .contact-links { display: flex; flex-direction: column; gap: 10px; align-items: center; }
+        .contact-link { font-family: 'Playfair Display', serif; font-size: clamp(1.2rem, 3vw, 2rem); color: #fff; text-decoration: none; font-style: italic; border-bottom: 2px solid var(--accent-primary); transition: 0.3s; }
+        .contact-link:hover { color: var(--accent-primary); text-shadow: 0 0 20px var(--accent-glow); }
 
         @media (max-width: 768px) { 
             * { cursor: auto !important; }
@@ -144,7 +149,8 @@
             <nav class="nav-links">
                 <a href="https://www.linkedin.com/in/amal-suresh-1996aa369" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
                 <a href="https://www.artstation.com/amalcs" target="_blank"><i class="fa-brands fa-artstation"></i> ArtStation</a>
-                <a href="mailto:amalsuresh734@gmail.com">Contact</a>
+                <a href="mailto:amalsuresh734@gmail.com">Email</a>
+                <a href="tel:+918078128159">Call</a>
                 <a href="resume.pdf" download class="resume-btn"><i class="fa-solid fa-download"></i> Resume</a>
             </nav>
         </header>
@@ -202,8 +208,11 @@
         </main>
 
         <footer>
-            <p style="text-transform: uppercase; letter-spacing: 5px; color: var(--text-dim); margin-bottom: 30px; font-size: 11px;">Let's collaborate</p>
-            <a href="mailto:amalsuresh734@gmail.com" class="contact-link">amalsuresh734@gmail.com</a>
+            <div class="contact-links">
+                <p style="text-transform: uppercase; letter-spacing: 5px; color: var(--text-dim); margin-bottom: 10px; font-size: 11px;">Let's collaborate</p>
+                <a href="mailto:amalsuresh734@gmail.com" class="contact-link">amalsuresh734@gmail.com</a>
+                <a href="tel:+918078128159" class="contact-link">+91 80781 28159</a>
+            </div>
             <div style="margin-top: 60px; opacity: 0.3; font-size: 10px; letter-spacing: 2px;">© 2026 AMAL SURESH</div>
         </footer>
     </div>
@@ -212,7 +221,6 @@
         const glow = document.getElementById('cursor-glow');
         const brush = document.getElementById('cursor-brush');
 
-        // requestAnimationFrame makes cursor movement butter-smooth
         document.addEventListener('mousemove', (e) => {
             window.requestAnimationFrame(() => {
                 glow.style.left = e.clientX + 'px';
