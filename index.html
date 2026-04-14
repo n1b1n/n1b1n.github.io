@@ -37,7 +37,7 @@
             color: var(--accent-primary);
             pointer-events: none;
             z-index: 10001;
-            transform: translate(-10%, -10%) rotate(-15deg); /* Aligns the tip of the brush with the click point */
+            transform: translate(-10%, -10%) rotate(-15deg); 
             text-shadow: 0 0 15px var(--accent-glow);
         }
 
@@ -85,7 +85,13 @@
         /* --- About Me Section --- */
         .about-section { padding: 6rem 0; border-bottom: 1px solid var(--border); }
         .about-content { max-width: 850px; margin: 0 auto; }
-        .about-text h2 { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 42px; margin-bottom: 30px; color: #fff; }
+        .about-text h2 { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            font-weight: 800; 
+            font-size: 42px; 
+            margin-bottom: 30px; 
+            color: #fff; 
+        }
         .about-description p { color: var(--text-dim); font-size: 18px; line-height: 1.8; margin-bottom: 24px; }
         
         .experience-box { 
@@ -98,14 +104,15 @@
         .experience-item h4 { font-size: 12px; color: var(--accent-primary); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 10px; }
         .experience-item p { font-size: 16px; color: #fff; line-height: 1.6; }
 
-        /* --- Technical Arsenal --- */
+        /* --- Technical Arsenal (Logo Images Integrated) --- */
         .arsenal-section { padding: 6rem 0; text-align: center; }
         .tool-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 40px; }
         .tool-card { 
-            background: var(--surface); border: 1px solid var(--border); padding: 30px; 
-            text-align: center; border-radius: 12px; width: 190px; font-size: 11px; font-weight: 700; text-transform: uppercase;
+            background: var(--surface); border: 1px solid var(--border); padding: 25px; 
+            text-align: center; border-radius: 12px; width: 190px; transition: 0.3s;
         }
-        .tool-card i { font-size: 32px; color: var(--accent-primary); margin-bottom: 15px; display: block; }
+        .tool-card img { width: 50px; height: 50px; margin-bottom: 15px; object-fit: contain; }
+        .tool-card span { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--text-dim); }
         .tool-card:hover { border-color: var(--accent-primary); box-shadow: 0 0 15px var(--accent-glow); }
 
         /* --- Gallery Section --- */
@@ -178,9 +185,18 @@
             <section class="arsenal-section">
                 <h2 style="font-size: 12px; text-transform: uppercase; letter-spacing: 4px; color: var(--accent-primary);">Technical Arsenal</h2>
                 <div class="tool-grid">
-                    <div class="tool-card"><i class="fa-solid fa-paintbrush"></i>Adobe Photoshop</div>
-                    <div class="tool-card"><i class="fa-solid fa-bezier-curve"></i>Adobe Illustrator</div>
-                    <div class="tool-card"><i class="fa-solid fa-palette"></i>Digital Painting</div>
+                    <div class="tool-card">
+                        <img src="pngwing.com(1).png" alt="Photoshop">
+                        <span>Photoshop</span>
+                    </div>
+                    <div class="tool-card">
+                        <img src="pngwing.com.png" alt="Illustrator">
+                        <span>Illustrator</span>
+                    </div>
+                    <div class="tool-card">
+                        <i class="fa-solid fa-palette" style="font-size: 40px; color: var(--accent-primary); margin-bottom: 15px; display: block;"></i>
+                        <span>Digital Painting</span>
+                    </div>
                 </div>
             </section>
 
@@ -189,19 +205,15 @@
                     <button class="filter-btn active" onclick="filterSelection('all')">All Work</button>
                     <button class="filter-btn" onclick="filterSelection('bg')">Backgrounds</button>
                     <button class="filter-btn" onclick="filterSelection('character')">Characters</button>
-                    <button class="filter-btn" onclick="filterSelection('icons')">Icon Sketches</button>
+                    <button class="filter-btn" onclick="filterSelection('icons')">Icons</button>
+                    <button class="filter-btn" onclick="filterSelection('sketches')">Sketches</button>
                 </div>
 
                 <div class="gallery-grid">
-                    <div class="art-card bg">
-                        <img src="art1.jpg" alt="BG Art">
-                    </div>
-                    <div class="art-card character">
-                        <img src="art2.jpg" alt="Char Art">
-                    </div>
-                    <div class="art-card icons">
-                        <img src="art3.jpg" alt="Icon Sketch">
-                    </div>
+                    <div class="art-card bg"><img src="art1.jpg" alt="BG Art"></div>
+                    <div class="art-card character"><img src="art2.jpg" alt="Char Art"></div>
+                    <div class="art-card icons"><img src="art3.jpg" alt="Icon Art"></div>
+                    <div class="art-card sketches"><img src="art4.jpg" alt="Sketch Art"></div>
                 </div>
             </section>
         </main>
