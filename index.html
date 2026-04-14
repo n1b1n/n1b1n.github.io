@@ -32,11 +32,16 @@
             position: fixed;
             top: 0;
             left: 0;
-            font-size: 24px;
+            font-size: 26px; /* Slightly larger for visibility */
             color: var(--accent-primary);
             pointer-events: none;
             z-index: 10001;
-            transform: translate(-10%, -10%) rotate(-15deg); 
+            
+            /* --- UPDATED UPWARD STYLE --- */
+            /* We translate 0, -100% to lift the icon above the click point,
+               and rotate 35deg to point the bristles upward and right. */
+            transform: translate(0%, -100%) rotate(35deg); 
+            
             text-shadow: 0 0 15px var(--accent-glow);
         }
 
