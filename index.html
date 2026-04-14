@@ -17,6 +17,7 @@
             --border: rgba(255, 255, 255, 0.05); 
         }
 
+        /* cursor: none is essential for the custom brush to work */
         * { margin: 0; padding: 0; box-sizing: border-box; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); cursor: none; }
         
         body {
@@ -27,33 +28,30 @@
             scroll-behavior: smooth;
         }
 
-        /* --- MOUSE GLOW --- */
+        /* --- CUSTOM PAINT BRUSH CURSOR --- */
+        #cursor-brush {
+            position: fixed;
+            top: 0;
+            left: 0;
+            font-size: 24px;
+            color: var(--accent-primary);
+            pointer-events: none;
+            z-index: 10001;
+            transform: translate(-10%, -10%) rotate(-15deg); /* Aligns the tip of the brush with the click point */
+            text-shadow: 0 0 15px var(--accent-glow);
+        }
+
         #cursor-glow {
             position: fixed;
             top: 0;
             left: 0;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(0, 212, 255, 0.08) 0%, transparent 70%);
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.07) 0%, transparent 70%);
             border-radius: 50%;
             pointer-events: none;
             transform: translate(-50%, -50%);
             z-index: 1;
-            transition: width 0.2s, height 0.2s;
-        }
-
-        #cursor-dot {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 8px;
-            height: 8px;
-            background: var(--accent-primary);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            z-index: 10001;
-            box-shadow: 0 0 15px var(--accent-primary);
         }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 2; }
@@ -84,7 +82,7 @@
         .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 8vw, 5.5rem); line-height: 1; margin-bottom: 20px; font-style: italic; }
         .hero h1 span { color: var(--accent-primary); text-shadow: 0 0 30px var(--accent-glow); }
 
-        /* --- About Me Spotlight --- */
+        /* --- About Me Section --- */
         .about-section { padding: 6rem 0; border-bottom: 1px solid var(--border); }
         .about-content { max-width: 850px; margin: 0 auto; }
         .about-text h2 { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 42px; margin-bottom: 30px; color: #fff; }
@@ -94,7 +92,6 @@
             background: var(--surface); padding: 35px; border-radius: 12px; border: 1px solid var(--border);
             position: relative; overflow: hidden;
         }
-        /* Spotlight interaction */
         .experience-box:hover { border-color: var(--accent-primary); box-shadow: 0 0 20px var(--accent-glow); }
 
         .experience-item { padding-left: 25px; border-left: 3px solid var(--accent-primary); }
@@ -124,7 +121,6 @@
         .art-card { background-color: var(--surface); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; position: relative; }
         .art-card img { width: 100%; height: 450px; object-fit: cover; opacity: 0.7; filter: saturate(0.5); }
         
-        /* Subject Glow on Hover */
         .art-card:hover { transform: translateY(-10px); border-color: var(--accent-primary); box-shadow: 0 0 40px var(--accent-glow); }
         .art-card:hover img { opacity: 1; filter: saturate(1); transform: scale(1.05); }
 
@@ -134,14 +130,14 @@
 
         @media (max-width: 768px) { 
             * { cursor: auto; }
-            #cursor-glow, #cursor-dot { display: none; }
+            #cursor-glow, #cursor-brush { display: none; }
         }
     </style>
 </head>
 <body>
 
     <div id="cursor-glow"></div>
-    <div id="cursor-dot"></div>
+    <i class="fa-solid fa-paint-brush" id="cursor-brush"></i>
 
     <div class="container">
         <header class="nav-header">
@@ -193,6 +189,7 @@
                     <button class="filter-btn active" onclick="filterSelection('all')">All Work</button>
                     <button class="filter-btn" onclick="filterSelection('bg')">Backgrounds</button>
                     <button class="filter-btn" onclick="filterSelection('character')">Characters</button>
+                    <button class="filter-btn" onclick="filterSelection('icons')">Icon Sketches</button>
                 </div>
 
                 <div class="gallery-grid">
@@ -201,6 +198,9 @@
                     </div>
                     <div class="art-card character">
                         <img src="art2.jpg" alt="Char Art">
+                    </div>
+                    <div class="art-card icons">
+                        <img src="art3.jpg" alt="Icon Sketch">
                     </div>
                 </div>
             </section>
@@ -214,13 +214,13 @@
 
     <script>
         const glow = document.getElementById('cursor-glow');
-        const dot = document.getElementById('cursor-dot');
+        const brush = document.getElementById('cursor-brush');
 
         document.addEventListener('mousemove', (e) => {
             glow.style.left = e.clientX + 'px';
             glow.style.top = e.clientY + 'px';
-            dot.style.left = e.clientX + 'px';
-            dot.style.top = e.clientY + 'px';
+            brush.style.left = e.clientX + 'px';
+            brush.style.top = e.clientY + 'px';
         });
 
         function filterSelection(c) {
