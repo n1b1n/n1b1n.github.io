@@ -127,12 +127,12 @@
             border-radius: 6px; 
             overflow: hidden; 
             position: relative; 
-            display: block; /* Removed fixed heights, allowing natural image size */
+            display: block; 
         }
         
         .art-card img { 
             width: 100%; 
-            height: auto; /* This completely removes the black spaces */
+            height: auto; 
             display: block;
             opacity: 0.85; 
             transition: 0.5s;
@@ -199,7 +199,7 @@
             <section class="arsenal-section">
                 <h2 style="font-size: 12px; text-transform: uppercase; letter-spacing: 4px; color: var(--accent-primary);">Technical Arsenal</h2>
                 <div class="tool-grid">
-                    <div class="tool-card"><img src="photoshop.png" alt="Photoshop"><span>Photoshop</span></div>
+                    <div class="tool-card"><img src="photosho.png" alt="Photoshop"><span>Photoshop</span></div>
                     <div class="tool-card"><img src="illustrator.png" alt="Illustrator"><span>Illustrator</span></div>
                     <div class="tool-card"><i class="fa-solid fa-palette" style="font-size: 40px; color: var(--accent-primary); margin-bottom: 15px; display: block;"></i><span>Digital Painting</span></div>
                 </div>
@@ -208,18 +208,12 @@
             <section id="work">
                 <div class="filter-controls">
                     <button class="filter-btn active" onclick="filterSelection('all')">All Work</button>
-                    <button class="filter-btn" onclick="filterSelection('bg')">Backgrounds</button>
                     <button class="filter-btn" onclick="filterSelection('icons')">Icons</button>
                     <button class="filter-btn" onclick="filterSelection('sketches')">Sketches</button>
                 </div>
 
                 <div class="gallery-grid">
                     
-                    <div class="art-card bg">
-                        <img src="art1.jpg" alt="Background Art">
-                        <div class="card-overlay"><h3>Environment Concept</h3></div>
-                    </div>
-
                     <div class="art-card icons">
                         <img src="icon1.png" alt="Icon Set 1">
                         <div class="card-overlay"><h3>Core Game Icons</h3></div>
@@ -240,7 +234,7 @@
                         <div class="card-overlay"><h3>Event Badges</h3></div>
                     </div>
 
-                </div>
+                    </div>
             </section>
         </main>
 
