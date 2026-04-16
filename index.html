@@ -49,7 +49,7 @@
             font-size: 28px; 
             color: var(--accent-primary);
             pointer-events: none;
-            z-index: 100001; /* Extremely high to stay above modal */
+            z-index: 100001; 
             transform-origin: bottom left;
             transform: translate(0, -100%) rotate(10deg); 
             text-shadow: 0 0 15px var(--accent-glow);
@@ -253,13 +253,29 @@
 
             <section id="work">
                 <div class="filter-controls">
-                    <button class="filter-btn active" onclick="filterSelection('bg')">Backgrounds</button>
+                    <button class="filter-btn active" onclick="filterSelection('icons')">Icons</button>
+                    <button class="filter-btn" onclick="filterSelection('bg')">Backgrounds</button>
                     <button class="filter-btn" onclick="filterSelection('character')">Characters</button>
-                    <button class="filter-btn" onclick="filterSelection('icons')">Icons</button>
                 </div>
 
                 <div class="gallery-grid">
                     
+                    <div class="art-card icons">
+                        <img src="icon1.png" alt="Icon Set 1">
+                    </div>
+                    <div class="art-card icons">
+                        <img src="page2.png" alt="Icon Set 2">
+                    </div>
+                    <div class="art-card icons">
+                        <img src="page3.png" alt="Icon Set 3">
+                    </div>
+                    <div class="art-card icons">
+                        <img src="page4.png" alt="Icon Set 4">
+                    </div>
+                    <div class="art-card icons">
+                        <img src="page5.png" alt="Icon Set 5">
+                    </div>
+
                     <div class="art-card bg">
                         <img src="BG1.jpg" alt="Background Concept 1">
                     </div>
@@ -285,22 +301,9 @@
                         <img src="BG8.png" alt="Background Concept 8">
                     </div>
 
-                    <div class="art-card icons">
-                        <img src="icon1.png" alt="Icon Set 1">
+                    <div class="art-card character">
+                        <img src="char1-1.png" alt="Character Concept 1">
                     </div>
-                    <div class="art-card icons">
-                        <img src="page2.png" alt="Icon Set 2">
-                    </div>
-                    <div class="art-card icons">
-                        <img src="page3.png" alt="Icon Set 3">
-                    </div>
-                    <div class="art-card icons">
-                        <img src="page4.png" alt="Icon Set 4">
-                    </div>
-                    <div class="art-card icons">
-                        <img src="page5.png" alt="Icon Set 5">
-                    </div>
-
                     <div class="art-card character">
                         <img src="char2.png" alt="Character Concept 2">
                     </div>
@@ -309,6 +312,21 @@
                     </div>
                     <div class="art-card character">
                         <img src="char4.jpg" alt="Character Concept 4">
+                    </div>
+                    <div class="art-card character">
+                        <img src="char4.png" alt="Character Concept 4 PNG">
+                    </div>
+                    <div class="art-card character">
+                        <img src="char5.png" alt="Character Concept 5">
+                    </div>
+                    <div class="art-card character">
+                        <img src="char6.png" alt="Character Concept 6">
+                    </div>
+                    <div class="art-card character">
+                        <img src="char7.png" alt="Character Concept 7">
+                    </div>
+                    <div class="art-card character">
+                        <img src="char8.png" alt="Character Concept 8">
                     </div>
 
                 </div>
@@ -342,7 +360,6 @@
         // --- FILTER SCRIPT ---
         function filterSelection(c) {
             const x = document.getElementsByClassName("art-card");
-            // NOTE: Removed 'all' logic as requested.
             for (let i = 0; i < x.length; i++) {
                 x[i].style.display = "none";
                 if (x[i].className.indexOf(c) > -1) x[i].style.display = "block";
@@ -352,9 +369,9 @@
             event.currentTarget.classList.add("active");
         }
 
-        // Run filtering on load to ensure only backgrounds show initially
+        // Sets "Icons" as the default view on page load
         document.addEventListener("DOMContentLoaded", () => {
-            filterSelection('bg');
+            filterSelection('icons');
         });
 
         // --- LIGHTBOX MODAL SCRIPT ---
