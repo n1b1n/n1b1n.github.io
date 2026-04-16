@@ -49,7 +49,7 @@
             font-size: 28px; 
             color: var(--accent-primary);
             pointer-events: none;
-            z-index: 10001;
+            z-index: 100001; /* Extremely high to stay above modal */
             transform-origin: bottom left;
             transform: translate(0, -100%) rotate(10deg); 
             text-shadow: 0 0 15px var(--accent-glow);
@@ -116,7 +116,7 @@
 
         /* --- Gallery Section --- */
         .filter-controls { display: flex; justify-content: center; gap: 15px; margin: 2rem 0 4rem; flex-wrap: wrap; }
-        .filter-btn { background: transparent; border: 1px solid var(--border); color: var(--text-dim); padding: 10px 25px; cursor: none !important; border-radius: 30px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+        .filter-btn { background: transparent; border: 1px solid var(--border); color: var(--text-dim); padding: 10px 25px; border-radius: 30px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
         .filter-btn.active, .filter-btn:hover { border-color: var(--accent-primary); color: var(--accent-primary); box-shadow: 0 0 15px var(--accent-glow); }
 
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; align-items: start; }
@@ -139,7 +139,7 @@
         }
         
         .art-card:hover { transform: translateY(-10px); border-color: var(--accent-primary); box-shadow: 0 0 40px var(--accent-glow); }
-        .art-card:hover img { opacity: 1; transform: scale(1.02); }
+        .art-card:hover img { opacity: 1; filter: saturate(1); transform: scale(1.02); }
 
         .card-overlay {
             position: absolute; bottom: 0; left: 0; width: 100%; padding: 20px;
@@ -149,6 +149,68 @@
         .art-card:hover .card-overlay { opacity: 1; }
         .card-overlay h3 { font-size: 18px; color: #fff; text-align: center; font-family: 'Playfair Display', serif; font-style: italic;}
 
+        /* --- LIGHTBOX MODAL --- */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 99999; /* Keeps modal below custom brush but above website */
+            padding-top: 50px; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(5, 7, 10, 0.95); 
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 8px;
+            border: 2px solid var(--accent-primary);
+            box-shadow: 0 0 40px var(--accent-glow);
+            animation: zoomIn 0.3s ease;
+        }
+
+        #caption {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            color: var(--accent-primary);
+            padding: 20px 0;
+            font-size: 24px;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            animation: zoomIn 0.3s ease;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 25px;
+            right: 40px;
+            color: var(--text-dim);
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .close-modal:hover,
+        .close-modal:focus {
+            color: var(--accent-primary);
+            text-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        @keyframes zoomIn {
+            from {transform: scale(0.9); opacity: 0;} 
+            to {transform: scale(1); opacity: 1;}
+        }
+
         footer { text-align: center; padding: 6rem 0; border-top: 1px solid var(--border); margin-top: 6rem; }
         .contact-links { display: flex; flex-direction: column; gap: 10px; align-items: center; }
         .contact-link { font-family: 'Playfair Display', serif; font-size: clamp(1.2rem, 3vw, 2rem); color: #fff; text-decoration: none; font-style: italic; border-bottom: 2px solid var(--accent-primary); transition: 0.3s; }
@@ -157,6 +219,7 @@
         @media (max-width: 768px) { 
             * { cursor: auto !important; }
             #cursor-glow, #cursor-brush { display: none; }
+            .modal-content { max-width: 95%; max-height: 70vh; }
         }
     </style>
 </head>
@@ -164,6 +227,12 @@
 
     <div id="cursor-glow"></div>
     <i class="fa-solid fa-paint-brush" id="cursor-brush"></i>
+
+    <div id="imageModal" class="modal">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="img01">
+        <div id="caption"></div>
+    </div>
 
     <div class="container">
         <header class="nav-header">
@@ -234,7 +303,7 @@
                         <div class="card-overlay"><h3>Event Badges</h3></div>
                     </div>
 
-                    </div>
+                </div>
             </section>
         </main>
 
@@ -249,6 +318,7 @@
     </div>
 
     <script>
+        // --- CUSTOM CURSOR SCRIPT ---
         const glow = document.getElementById('cursor-glow');
         const brush = document.getElementById('cursor-brush');
 
@@ -261,6 +331,7 @@
             });
         });
 
+        // --- FILTER SCRIPT ---
         function filterSelection(c) {
             const x = document.getElementsByClassName("art-card");
             if (c == "all") c = "";
@@ -271,6 +342,36 @@
             const btns = document.getElementsByClassName("filter-btn");
             for (let i = 0; i < btns.length; i++) { btns[i].classList.remove("active"); }
             event.currentTarget.classList.add("active");
+        }
+
+        // --- LIGHTBOX MODAL SCRIPT ---
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("img01");
+        const captionText = document.getElementById("caption");
+        const artCards = document.querySelectorAll(".art-card");
+        const span = document.getElementsByClassName("close-modal")[0];
+
+        // Open modal on click
+        artCards.forEach(card => {
+            card.addEventListener("click", function() {
+                const img = this.querySelector("img");
+                const heading = this.querySelector("h3");
+                modal.style.display = "block";
+                modalImg.src = img.src;
+                captionText.innerHTML = heading ? heading.innerHTML : "";
+            });
+        });
+
+        // Close modal when clicking the 'X'
+        span.onclick = function() { 
+            modal.style.display = "none";
+        }
+
+        // Close modal when clicking outside the image
+        modal.onclick = function(e) {
+            if (e.target === modal) {
+                modal.style.display = "none";
+            }
         }
     </script>
 </body>
