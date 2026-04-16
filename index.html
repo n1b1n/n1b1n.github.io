@@ -141,14 +141,6 @@
         .art-card:hover { transform: translateY(-10px); border-color: var(--accent-primary); box-shadow: 0 0 40px var(--accent-glow); }
         .art-card:hover img { opacity: 1; filter: saturate(1); transform: scale(1.02); }
 
-        .card-overlay {
-            position: absolute; bottom: 0; left: 0; width: 100%; padding: 20px;
-            background: linear-gradient(transparent, rgba(5, 7, 10, 0.95));
-            opacity: 0; transition: 0.4s; pointer-events: none;
-        }
-        .art-card:hover .card-overlay { opacity: 1; }
-        .card-overlay h3 { font-size: 18px; color: #fff; text-align: center; font-family: 'Playfair Display', serif; font-style: italic;}
-
         /* --- LIGHTBOX MODAL --- */
         .modal {
             display: none; 
@@ -173,20 +165,6 @@
             border-radius: 8px;
             border: 2px solid var(--accent-primary);
             box-shadow: 0 0 40px var(--accent-glow);
-            animation: zoomIn 0.3s ease;
-        }
-
-        #caption {
-            margin: auto;
-            display: block;
-            width: 80%;
-            max-width: 700px;
-            text-align: center;
-            color: var(--accent-primary);
-            padding: 20px 0;
-            font-size: 24px;
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
             animation: zoomIn 0.3s ease;
         }
 
@@ -231,7 +209,6 @@
     <div id="imageModal" class="modal">
         <span class="close-modal">&times;</span>
         <img class="modal-content" id="img01">
-        <div id="caption"></div>
     </div>
 
     <div class="container">
@@ -277,30 +254,44 @@
             <section id="work">
                 <div class="filter-controls">
                     <button class="filter-btn active" onclick="filterSelection('all')">All Work</button>
+                    <button class="filter-btn" onclick="filterSelection('bg')">Backgrounds</button>
+                    <button class="filter-btn" onclick="filterSelection('character')">Characters</button>
                     <button class="filter-btn" onclick="filterSelection('icons')">Icons</button>
-                    <button class="filter-btn" onclick="filterSelection('sketches')">Sketches</button>
                 </div>
 
                 <div class="gallery-grid">
                     
+                    <div class="art-card bg">
+                        <img src="art1.jpg" alt="Background Art">
+                    </div>
+
                     <div class="art-card icons">
                         <img src="icon1.png" alt="Icon Set 1">
                     </div>
-                    
                     <div class="art-card icons">
                         <img src="page2.png" alt="Icon Set 2">
                     </div>
-
                     <div class="art-card icons">
                         <img src="page3.png" alt="Icon Set 3">
                     </div>
-
                     <div class="art-card icons">
                         <img src="page4.png" alt="Icon Set 4">
                     </div>
-
                     <div class="art-card icons">
                         <img src="page5.png" alt="Icon Set 5">
+                    </div>
+
+                    <div class="art-card character">
+                        <img src="char1.png" alt="Character Concept 1">
+                    </div>
+                    <div class="art-card character">
+                        <img src="char2.png" alt="Character Concept 2">
+                    </div>
+                    <div class="art-card character">
+                        <img src="char3.png" alt="Character Concept 3">
+                    </div>
+                    <div class="art-card character">
+                        <img src="char4.jpg" alt="Character Concept 4">
                     </div>
 
                 </div>
@@ -347,7 +338,6 @@
         // --- LIGHTBOX MODAL SCRIPT ---
         const modal = document.getElementById("imageModal");
         const modalImg = document.getElementById("img01");
-        const captionText = document.getElementById("caption");
         const artCards = document.querySelectorAll(".art-card");
         const span = document.getElementsByClassName("close-modal")[0];
 
@@ -355,10 +345,8 @@
         artCards.forEach(card => {
             card.addEventListener("click", function() {
                 const img = this.querySelector("img");
-                const heading = this.querySelector("h3");
                 modal.style.display = "block";
                 modalImg.src = img.src;
-                captionText.innerHTML = heading ? heading.innerHTML : "";
             });
         });
 
