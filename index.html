@@ -253,8 +253,7 @@
 
             <section id="work">
                 <div class="filter-controls">
-                    <button class="filter-btn active" onclick="filterSelection('all')">All Work</button>
-                    <button class="filter-btn" onclick="filterSelection('bg')">Backgrounds</button>
+                    <button class="filter-btn active" onclick="filterSelection('bg')">Backgrounds</button>
                     <button class="filter-btn" onclick="filterSelection('character')">Characters</button>
                     <button class="filter-btn" onclick="filterSelection('icons')">Icons</button>
                 </div>
@@ -262,7 +261,28 @@
                 <div class="gallery-grid">
                     
                     <div class="art-card bg">
-                        <img src="art1.jpg" alt="Background Art">
+                        <img src="BG1.jpg" alt="Background Concept 1">
+                    </div>
+                    <div class="art-card bg">
+                        <img src="BG2.png" alt="Background Concept 2">
+                    </div>
+                    <div class="art-card bg">
+                        <img src="BG3.png" alt="Background Concept 3">
+                    </div>
+                    <div class="art-card bg">
+                        <img src="BG4.png" alt="Background Concept 4">
+                    </div>
+                    <div class="art-card bg">
+                        <img src="BG5.png" alt="Background Concept 5">
+                    </div>
+                    <div class="art-card bg">
+                        <img src="BG6.png" alt="Background Concept 6">
+                    </div>
+                    <div class="art-card bg">
+                        <img src="BG7.png" alt="Background Concept 7">
+                    </div>
+                    <div class="art-card bg">
+                        <img src="BG8.png" alt="Background Concept 8">
                     </div>
 
                     <div class="art-card icons">
@@ -281,9 +301,6 @@
                         <img src="page5.png" alt="Icon Set 5">
                     </div>
 
-                    <div class="art-card character">
-                        <img src="char1.png" alt="Character Concept 1">
-                    </div>
                     <div class="art-card character">
                         <img src="char2.png" alt="Character Concept 2">
                     </div>
@@ -325,7 +342,7 @@
         // --- FILTER SCRIPT ---
         function filterSelection(c) {
             const x = document.getElementsByClassName("art-card");
-            if (c == "all") c = "";
+            // NOTE: Removed 'all' logic as requested.
             for (let i = 0; i < x.length; i++) {
                 x[i].style.display = "none";
                 if (x[i].className.indexOf(c) > -1) x[i].style.display = "block";
@@ -334,6 +351,11 @@
             for (let i = 0; i < btns.length; i++) { btns[i].classList.remove("active"); }
             event.currentTarget.classList.add("active");
         }
+
+        // Run filtering on load to ensure only backgrounds show initially
+        document.addEventListener("DOMContentLoaded", () => {
+            filterSelection('bg');
+        });
 
         // --- LIGHTBOX MODAL SCRIPT ---
         const modal = document.getElementById("imageModal");
