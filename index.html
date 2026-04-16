@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amal Suresh | Concept Artist</title>
+    <title>Amal Suresh | Digital Artist</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Limelight&family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
     <style>
@@ -11,13 +11,12 @@
             --bg-base: #05070a; 
             --surface: #0d1117; 
             --accent-primary: #00d4ff;
-            --accent-glow: rgba(0, 212, 255, 0.2);
+            --accent-glow: rgba(0, 212, 255, 0.3);
             --text-main: #ffffff;       
             --text-dim: #94a3b8; 
             --border: rgba(255, 255, 255, 0.08); 
         }
 
-        /* Essential: cursor: none for the custom brush */
         * { margin: 0; padding: 0; box-sizing: border-box; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); cursor: none !important; }
         
         body {
@@ -28,7 +27,7 @@
             scroll-behavior: smooth;
         }
 
-        /* --- MOUSE GLOWSPOTLIGHT --- */
+        /* --- MOUSE GLOW SPOTLIGHT --- */
         #cursor-glow {
             position: fixed;
             top: 0;
@@ -120,20 +119,27 @@
         .filter-btn { background: transparent; border: 1px solid var(--border); color: var(--text-dim); padding: 10px 25px; cursor: none !important; border-radius: 30px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
         .filter-btn.active, .filter-btn:hover { border-color: var(--accent-primary); color: var(--accent-primary); box-shadow: 0 0 15px var(--accent-glow); }
 
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
-        .art-card { background-color: var(--surface); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; position: relative; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; align-items: start; }
+        
+        .art-card { 
+            background-color: var(--surface); 
+            border: 1px solid var(--border); 
+            border-radius: 6px; 
+            overflow: hidden; 
+            position: relative; 
+            display: block; /* Removed fixed heights, allowing natural image size */
+        }
         
         .art-card img { 
             width: 100%; 
-            height: 450px; 
-            object-fit: contain; /* CRITICAL FIX: Changed from 'cover' to 'contain' */
-            opacity: 0.7; 
-            filter: saturate(0.5); 
+            height: auto; /* This completely removes the black spaces */
+            display: block;
+            opacity: 0.85; 
             transition: 0.5s;
         }
         
         .art-card:hover { transform: translateY(-10px); border-color: var(--accent-primary); box-shadow: 0 0 40px var(--accent-glow); }
-        .art-card:hover img { opacity: 1; filter: saturate(1); transform: scale(1.02); }
+        .art-card:hover img { opacity: 1; transform: scale(1.02); }
 
         .card-overlay {
             position: absolute; bottom: 0; left: 0; width: 100%; padding: 20px;
@@ -141,7 +147,7 @@
             opacity: 0; transition: 0.4s; pointer-events: none;
         }
         .art-card:hover .card-overlay { opacity: 1; }
-        .card-overlay h3 { font-size: 18px; color: #fff; text-align: center;}
+        .card-overlay h3 { font-size: 18px; color: #fff; text-align: center; font-family: 'Playfair Display', serif; font-style: italic;}
 
         footer { text-align: center; padding: 6rem 0; border-top: 1px solid var(--border); margin-top: 6rem; }
         .contact-links { display: flex; flex-direction: column; gap: 10px; align-items: center; }
@@ -175,7 +181,7 @@
             <section class="hero">
                 <p class="tagline">Visualizing Imaginary Worlds</p>
                 <h1>Amal <span>Suresh</span></h1>
-                <p class="desc">Concept Artist</p>
+                <p class="desc">2D Gaming Concept Artist & Digital Artist.</p>
             </section>
 
             <section id="about" class="about-section">
@@ -183,14 +189,8 @@
                     <div class="about-text">
                         <h2>About Me</h2>
                         <div class="about-description">
-                            <p>I am an ardent and visionary artist and creative thinker who always works to the highest standards, delivering top-level professionalism and dedication.</p>
-                            <p>Started my career 5 years ago as a junior 2D gaming concept artist, I have extensive experience working on team projects under tight deadlines for global industry leaders.</p>
-                        </div>
-                        <div class="experience-box">
-                            <div class="experience-item">
-                                <h4>Experience Highlights</h4>
-                                <p>Successfully collaborated with top gaming companies including GSN, Zynga, and Stellarplay.</p>
-                            </div>
+                            <p>I am an ardent and visionary artist. As a creative thinker I always work to the highest standards; delivering the highest level of professionalism and dedication to long-term, strategic improvements of my skillset.</p>
+                            <p>I started my career as a junior 2D gaming concept artist, 5 yrs ago I've been working on team projects under tight deadlines. Worked with top gaming companies like GSN, ZYNGA, STELLARPLAY etc.</p>
                         </div>
                     </div>
                 </div>
@@ -199,8 +199,8 @@
             <section class="arsenal-section">
                 <h2 style="font-size: 12px; text-transform: uppercase; letter-spacing: 4px; color: var(--accent-primary);">Technical Arsenal</h2>
                 <div class="tool-grid">
-                    <div class="tool-card"><img src="photoshop.png" alt="PS"><span>Photoshop</span></div>
-                    <div class="tool-card"><img src="illustrator.png" alt="AI"><span>Illustrator</span></div>
+                    <div class="tool-card"><img src="photoshop.png" alt="Photoshop"><span>Photoshop</span></div>
+                    <div class="tool-card"><img src="illustrator.png" alt="Illustrator"><span>Illustrator</span></div>
                     <div class="tool-card"><i class="fa-solid fa-palette" style="font-size: 40px; color: var(--accent-primary); margin-bottom: 15px; display: block;"></i><span>Digital Painting</span></div>
                 </div>
             </section>
@@ -209,34 +209,37 @@
                 <div class="filter-controls">
                     <button class="filter-btn active" onclick="filterSelection('all')">All Work</button>
                     <button class="filter-btn" onclick="filterSelection('bg')">Backgrounds</button>
+                    <button class="filter-btn" onclick="filterSelection('icons')">Icons</button>
                     <button class="filter-btn" onclick="filterSelection('sketches')">Sketches</button>
                 </div>
 
                 <div class="gallery-grid">
-                    <div class="art-card bg">
-                        <img src="art1.jpg" alt="Background">
-                        <div class="card-overlay"><h3>Waterfall Sanctuary</h3></div>
-                    </div>
-                    
-                    <div class="art-card sketches">
-                        <img src="art2.jpg" alt="Character Sketch">
-                        <div class="card-overlay"><h3>Void Wanderer Sketch</h3></div>
-                    </div>
-
-                    <div class="art-card bg">
-                        <img src="page2.png" alt="Galaxy Tree">
-                        <div class="card-overlay"><h3>Galaxy Tree Concept</h3></div>
-                    </div>
                     
                     <div class="art-card bg">
-                        <img src="page3.png" alt="Anime Cityscape">
-                        <div class="card-overlay"><h3>Anime City Concept</h3></div>
+                        <img src="art1.jpg" alt="Background Art">
+                        <div class="card-overlay"><h3>Environment Concept</h3></div>
                     </div>
 
-                    <div class="art-card sketches">
-                        <img src="page4.png" alt="Void Sketches">
-                        <div class="card-overlay"><h3>Void Art Sketches</h3></div>
+                    <div class="art-card icons">
+                        <img src="icon1.png" alt="Icon Set 1">
+                        <div class="card-overlay"><h3>Core Game Icons</h3></div>
                     </div>
+                    
+                    <div class="art-card icons">
+                        <img src="page2.png" alt="Icon Set 2">
+                        <div class="card-overlay"><h3>Slot Game Assets</h3></div>
+                    </div>
+
+                    <div class="art-card icons">
+                        <img src="page3.png" alt="Icon Set 3">
+                        <div class="card-overlay"><h3>Props & Items</h3></div>
+                    </div>
+
+                    <div class="art-card icons">
+                        <img src="page4.png" alt="Icon Set 4">
+                        <div class="card-overlay"><h3>Event Badges</h3></div>
+                    </div>
+
                 </div>
             </section>
         </main>
