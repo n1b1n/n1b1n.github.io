@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amal Suresh | Digital Artist</title>
+    <title>Amal Suresh | Concept Artist</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Limelight&family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
     <style>
@@ -11,12 +11,13 @@
             --bg-base: #05070a; 
             --surface: #0d1117; 
             --accent-primary: #00d4ff;
-            --accent-glow: rgba(0, 212, 255, 0.3);
+            --accent-glow: rgba(0, 212, 255, 0.2);
             --text-main: #ffffff;       
             --text-dim: #94a3b8; 
             --border: rgba(255, 255, 255, 0.08); 
         }
 
+        /* Essential: cursor: none for the custom brush */
         * { margin: 0; padding: 0; box-sizing: border-box; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); cursor: none !important; }
         
         body {
@@ -27,7 +28,7 @@
             scroll-behavior: smooth;
         }
 
-        /* --- MOUSE GLOW SPOTLIGHT --- */
+        /* --- MOUSE GLOWSPOTLIGHT --- */
         #cursor-glow {
             position: fixed;
             top: 0;
@@ -121,10 +122,26 @@
 
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
         .art-card { background-color: var(--surface); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; position: relative; }
-        .art-card img { width: 100%; height: 450px; object-fit: cover; opacity: 0.7; filter: saturate(0.5); }
+        
+        .art-card img { 
+            width: 100%; 
+            height: 450px; 
+            object-fit: contain; /* CRITICAL FIX: Changed from 'cover' to 'contain' */
+            opacity: 0.7; 
+            filter: saturate(0.5); 
+            transition: 0.5s;
+        }
         
         .art-card:hover { transform: translateY(-10px); border-color: var(--accent-primary); box-shadow: 0 0 40px var(--accent-glow); }
-        .art-card:hover img { opacity: 1; filter: saturate(1); transform: scale(1.05); }
+        .art-card:hover img { opacity: 1; filter: saturate(1); transform: scale(1.02); }
+
+        .card-overlay {
+            position: absolute; bottom: 0; left: 0; width: 100%; padding: 20px;
+            background: linear-gradient(transparent, rgba(5, 7, 10, 0.95));
+            opacity: 0; transition: 0.4s; pointer-events: none;
+        }
+        .art-card:hover .card-overlay { opacity: 1; }
+        .card-overlay h3 { font-size: 18px; color: #fff; text-align: center;}
 
         footer { text-align: center; padding: 6rem 0; border-top: 1px solid var(--border); margin-top: 6rem; }
         .contact-links { display: flex; flex-direction: column; gap: 10px; align-items: center; }
@@ -158,7 +175,7 @@
             <section class="hero">
                 <p class="tagline">Visualizing Imaginary Worlds</p>
                 <h1>Amal <span>Suresh</span></h1>
-                <p class="desc">2D Gaming Concept Artist & Digital Artist.</p>
+                <p class="desc">Concept Artist</p>
             </section>
 
             <section id="about" class="about-section">
@@ -182,8 +199,8 @@
             <section class="arsenal-section">
                 <h2 style="font-size: 12px; text-transform: uppercase; letter-spacing: 4px; color: var(--accent-primary);">Technical Arsenal</h2>
                 <div class="tool-grid">
-                    <div class="tool-card"><img src="pngwing.com(1).png" alt="Photoshop"><span>Photoshop</span></div>
-                    <div class="tool-card"><img src="pngwing.com.png" alt="Illustrator"><span>Illustrator</span></div>
+                    <div class="tool-card"><img src="photoshop.png" alt="PS"><span>Photoshop</span></div>
+                    <div class="tool-card"><img src="illustrator.png" alt="AI"><span>Illustrator</span></div>
                     <div class="tool-card"><i class="fa-solid fa-palette" style="font-size: 40px; color: var(--accent-primary); margin-bottom: 15px; display: block;"></i><span>Digital Painting</span></div>
                 </div>
             </section>
@@ -192,14 +209,34 @@
                 <div class="filter-controls">
                     <button class="filter-btn active" onclick="filterSelection('all')">All Work</button>
                     <button class="filter-btn" onclick="filterSelection('bg')">Backgrounds</button>
-                    <button class="filter-btn" onclick="filterSelection('sketches')">Skicthes</button>
+                    <button class="filter-btn" onclick="filterSelection('sketches')">Sketches</button>
                 </div>
 
                 <div class="gallery-grid">
-                    <div class="art-card bg"><img src="icon1.png" alt="Waterfall Concept"></div>
-                    <div class="art-card bg"><img src="page2.png" alt="Galaxy Tree"></div>
-                    <div class="art-card bg"><img src="page3.png" alt="Anime City"></div>
-                    <div class="art-card sketches"><img src="page4.png" alt="Sketches Concept"></div>
+                    <div class="art-card bg">
+                        <img src="art1.jpg" alt="Background">
+                        <div class="card-overlay"><h3>Waterfall Sanctuary</h3></div>
+                    </div>
+                    
+                    <div class="art-card sketches">
+                        <img src="art2.jpg" alt="Character Sketch">
+                        <div class="card-overlay"><h3>Void Wanderer Sketch</h3></div>
+                    </div>
+
+                    <div class="art-card bg">
+                        <img src="page2.png" alt="Galaxy Tree">
+                        <div class="card-overlay"><h3>Galaxy Tree Concept</h3></div>
+                    </div>
+                    
+                    <div class="art-card bg">
+                        <img src="page3.png" alt="Anime Cityscape">
+                        <div class="card-overlay"><h3>Anime City Concept</h3></div>
+                    </div>
+
+                    <div class="art-card sketches">
+                        <img src="page4.png" alt="Void Sketches">
+                        <div class="card-overlay"><h3>Void Art Sketches</h3></div>
+                    </div>
                 </div>
             </section>
         </main>
@@ -227,33 +264,15 @@
             });
         });
 
-        // UPDATED FILTER SCRIPT
         function filterSelection(c) {
             const x = document.getElementsByClassName("art-card");
-            
-            // "all" means show everything
-            if (c === 'all') {
-                for (let i = 0; i < x.length; i++) {
-                    x[i].style.display = "block";
-                }
-            } else {
-                // Otherwise, show only matches
-                for (let i = 0; i < x.length; i++) {
-                    // Check if the card has the category class
-                    if (x[i].classList.contains(c)) {
-                        x[i].style.display = "block";
-                    } else {
-                        x[i].style.display = "none";
-                    }
-                }
+            if (c == "all") c = "";
+            for (let i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+                if (x[i].className.indexOf(c) > -1) x[i].style.display = "block";
             }
-
-            // Update active button state
             const btns = document.getElementsByClassName("filter-btn");
-            for (let i = 0; i < btns.length; i++) {
-                btns[i].classList.remove("active");
-            }
-            // Add 'active' class to the button that was just clicked
+            for (let i = 0; i < btns.length; i++) { btns[i].classList.remove("active"); }
             event.currentTarget.classList.add("active");
         }
     </script>
